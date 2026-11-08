@@ -1,0 +1,255 @@
+1
+00:00:00,000 --> 00:00:02,280
+PIN code 6 digit ka hi kyun hota hai,
+
+2
+00:00:02,300 --> 00:00:04,030
+aur pehla number kya batata hai?
+
+3
+00:00:04,050 --> 00:00:06,390
+Aur ek number aisa bhi hai jo India ke kisi
+
+4
+00:00:06,410 --> 00:00:07,520
+rajya ka nahi hai.
+
+5
+00:00:07,680 --> 00:00:08,100
+Kaunsa?
+
+6
+00:00:08,120 --> 00:00:09,320
+Woh end mein bataunga.
+
+7
+00:00:09,340 --> 00:00:12,040
+Socho, 1960 ke dashak ka India.
+
+8
+00:00:12,060 --> 00:00:14,460
+Chitthi pe sirf shehar ka naam likha hota tha.
+
+9
+00:00:14,480 --> 00:00:17,200
+Par dikkat yeh thi ki ek hi naam ki kai jagah
+
+10
+00:00:17,220 --> 00:00:17,670
+thi.
+
+11
+00:00:17,700 --> 00:00:20,200
+Jaise Aurangabad, Maharashtra mein bhi aur Bihar
+
+12
+00:00:20,220 --> 00:00:20,620
+mein bhi.
+
+13
+00:00:20,640 --> 00:00:23,200
+Upar se pate alag alag bhashaon mein likhe hote
+
+14
+00:00:23,220 --> 00:00:23,320
+the.
+
+15
+00:00:23,340 --> 00:00:25,590
+Toh postman ko samajh hi nahi aata tha ki
+
+16
+00:00:25,610 --> 00:00:27,020
+chitthi kahan bhejni hai,
+
+17
+00:00:27,040 --> 00:00:28,880
+aur kai chitthiyan galat jagah pahunch jaati
+
+18
+00:00:28,900 --> 00:00:29,290
+thi.
+
+19
+00:00:29,310 --> 00:00:31,730
+Is problem ka hal nikala Shriram Bhikaji
+
+20
+00:00:31,750 --> 00:00:32,620
+Velankar ne.
+
+21
+00:00:32,640 --> 00:00:35,000
+Woh Ministry of Communications mein ek senior
+
+22
+00:00:35,020 --> 00:00:35,770
+officer the.
+
+23
+00:00:35,790 --> 00:00:38,910
+Unhone ek aisa number system socha jo bhasha aur
+
+24
+00:00:38,930 --> 00:00:40,280
+shehar ke naam pe nahi,
+
+25
+00:00:40,300 --> 00:00:41,550
+sirf number pe chale.
+
+26
+00:00:41,570 --> 00:00:45,350
+Aur 15 August 1972 ko, Swatantrata Diwas ke din,
+
+27
+00:00:45,370 --> 00:00:47,240
+poore desh mein PIN code shuru hua.
+
+28
+00:00:47,260 --> 00:00:49,580
+PIN yaani Postal Index Number.
+
+29
+00:00:49,600 --> 00:00:51,350
+Ab 6 digit hi kyun?
+
+30
+00:00:51,370 --> 00:00:52,850
+Kyunki India bahut bada hai,
+
+31
+00:00:52,870 --> 00:00:54,970
+aur yahan hazaron post offices hain.
+
+32
+00:00:54,990 --> 00:00:57,470
+Velankar ji ka system ek seedhi ki tarah hai.
+
+33
+00:00:57,490 --> 00:00:59,850
+Har number chitthi ko ek kadam aage le jaata
+
+34
+00:00:59,870 --> 00:01:02,200
+hai, India ke bade hisse se shuru karke,
+
+35
+00:01:02,220 --> 00:01:04,670
+seedha aapke ghar ke post office tak.
+
+36
+00:01:04,690 --> 00:01:06,330
+Chaliye ek example lete hain:
+
+37
+00:01:06,350 --> 00:01:08,680
+110001.
+
+38
+00:01:08,700 --> 00:01:11,000
+Pehla number 1 batata hai zone,
+
+39
+00:01:11,020 --> 00:01:12,140
+yaani North India.
+
+40
+00:01:12,160 --> 00:01:14,410
+Doosra number us zone ka chhota hissa,
+
+41
+00:01:14,430 --> 00:01:15,030
+yahan Delhi.
+
+42
+00:01:15,050 --> 00:01:16,885
+Teesra number sorting district,
+
+43
+00:01:16,905 --> 00:01:18,690
+jahan chitthiyan chhati jaati hain.
+
+44
+00:01:18,710 --> 00:01:19,950
+Aur aakhri teen number,
+
+45
+00:01:19,970 --> 00:01:23,640
+001, seedha aapka delivery post office.
+
+46
+00:01:23,660 --> 00:01:25,115
+Bas, chitthi pahunch gayi.
+
+47
+00:01:25,140 --> 00:01:26,750
+India mein aise 8 zone hain.
+
+48
+00:01:26,770 --> 00:01:30,460
+1 se Delhi aur North, 2 se UP aur Uttarakhand,
+
+49
+00:01:30,480 --> 00:01:32,170
+3 se Rajasthan-Gujarat,
+
+50
+00:01:32,190 --> 00:01:34,140
+4 se Maharashtra aur MP,
+
+51
+00:01:34,160 --> 00:01:36,890
+5 se Andhra, Telangana aur Karnataka,
+
+52
+00:01:36,910 --> 00:01:39,060
+6 se Tamil Nadu aur Kerala,
+
+53
+00:01:39,080 --> 00:01:41,640
+7 se Bengal, Odisha aur North-East,
+
+54
+00:01:41,660 --> 00:01:44,040
+aur 8 se Bihar aur Jharkhand.
+
+55
+00:01:44,060 --> 00:01:46,400
+Aur ab woh number jo maine shuru mein kaha tha:
+
+56
+00:01:46,420 --> 00:01:46,970
+9.
+
+57
+00:01:46,990 --> 00:01:48,490
+Yeh kisi rajya ka nahi hai.
+
+58
+00:01:48,510 --> 00:01:51,240
+9 rakha gaya hai Army Postal Service ke liye,
+
+59
+00:01:51,260 --> 00:01:53,620
+taaki border pe tainaat hamare jawanon tak bhi
+
+60
+00:01:53,640 --> 00:01:55,080
+ghar ki chitthi pahunch sake.
+
+61
+00:01:55,100 --> 00:01:57,350
+Aapke PIN code ka pehla number kya hai?
+
+62
+00:01:57,370 --> 00:01:58,220
+Comment mein batao.
+
+63
+00:01:58,240 --> 00:02:00,800
+Aur aise roz ke "kyun" ke liye Whysplained ko
+
+64
+00:02:00,820 --> 00:02:01,750
+subscribe karo!
