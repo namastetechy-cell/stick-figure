@@ -21,4 +21,4 @@
 - `engine/src/videos/arms-iso/` (composition `IsoShort`): the bedroom as an SVG isometric diorama, the man and the
   octopus as canvas drawings (same toon kit), and a 2D camera. Timings, captions and sound are shared with the 3D version.
 - Render: `npx remotion render src/videos/arms-iso/entry.tsx IsoShort out.mp4 --codec h264 --crf 18` (about 2 min,
-  no GPU needed), then mux `output/ten-arms-music-sfx.m4a`.
+  no GPU needed), then mux `output/ten-arms-sfx-only.m4a` (SFX only, no music; `output/ten-arms-music-sfx.m4a` still has both).
