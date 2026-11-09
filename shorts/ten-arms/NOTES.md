@@ -16,3 +16,9 @@
   Add the VO at about -14 LUFS on top.
 - **Render:** `npx remotion render src/videos/arms/entry.tsx ArmsShort out.mp4 --codec h264 --crf 17 --gl=angle`
   (GPU). On a GPU-less cloud machine use `--gl=swangle`: about 7 s/frame at 1080p, 2.7 s/frame at 720p.
+
+## Isometric 2D version (`output/ten-arms-isometric.mp4`)
+- `engine/src/videos/arms-iso/` (composition `IsoShort`): the bedroom as an SVG isometric diorama, the man and the
+  octopus as canvas drawings (same toon kit), and a 2D camera. Timings, captions and sound are shared with the 3D version.
+- Render: `npx remotion render src/videos/arms-iso/entry.tsx IsoShort out.mp4 --codec h264 --crf 18` (about 2 min,
+  no GPU needed), then mux `output/ten-arms-music-sfx.m4a`.
