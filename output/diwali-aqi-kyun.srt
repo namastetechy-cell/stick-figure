@@ -1,0 +1,227 @@
+1
+00:00:00,000 --> 00:00:03,120
+Diwali ke agle din Delhi ka AQI badh kyun
+
+2
+00:00:03,140 --> 00:00:03,810
+jaata hai?
+
+3
+00:00:03,830 --> 00:00:07,580
+Aaj subah 7 baje Delhi ka AQI 368 tha.
+
+4
+00:00:07,600 --> 00:00:09,110
+Patakhe toh raat ko hi band ho gaye.
+
+5
+00:00:09,130 --> 00:00:10,270
+Toh science kya kehti hai?
+
+6
+00:00:10,290 --> 00:00:11,360
+Pehle chemistry.
+
+7
+00:00:11,380 --> 00:00:13,260
+Patakhe mein potassium nitrate,
+
+8
+00:00:13,280 --> 00:00:15,140
+sulfur aur charcoal hota hai,
+
+9
+00:00:15,160 --> 00:00:16,780
+aur rang ke liye strontium,
+
+10
+00:00:16,800 --> 00:00:18,750
+barium aur copper jaise metals.
+
+11
+00:00:18,820 --> 00:00:22,580
+Jalne pe yeh PM2.5 ke bahut chhote kan aur
+
+12
+00:00:22,600 --> 00:00:24,795
+sulfur dioxide jaisi gases chhodte hain.
+
+13
+00:00:24,815 --> 00:00:25,700
+Ab physics.
+
+14
+00:00:25,720 --> 00:00:28,210
+Normally zameen ke paas hawa garam hoti
+
+15
+00:00:28,230 --> 00:00:29,520
+hai, woh upar uthti hai,
+
+16
+00:00:29,540 --> 00:00:31,290
+aur dhuaan saath le jaati hai.
+
+17
+00:00:31,370 --> 00:00:33,410
+Par sardi ki raat mein zameen jaldi thandi
+
+18
+00:00:33,430 --> 00:00:34,290
+ho jaati hai.
+
+19
+00:00:34,310 --> 00:00:35,330
+Neeche thandi hawa,
+
+20
+00:00:35,350 --> 00:00:36,370
+upar garam hawa.
+
+21
+00:00:36,390 --> 00:00:38,580
+Ise temperature inversion kehte hain.
+
+22
+00:00:38,600 --> 00:00:40,940
+Thandi, bhaari hawa upar nahi uth paati,
+
+23
+00:00:40,960 --> 00:00:43,010
+toh dhuaan bhi neeche hi ruka rehta hai.
+
+24
+00:00:43,130 --> 00:00:44,320
+Science mein ek shabd hai,
+
+25
+00:00:44,340 --> 00:00:46,607
+mixing height, yaani zameen se kitni
+
+26
+00:00:46,627 --> 00:00:48,590
+oonchai tak hawa ghul-mil sakti hai.
+
+27
+00:00:48,610 --> 00:00:50,520
+Din mein yeh oonchai zyada hoti hai,
+
+28
+00:00:50,540 --> 00:00:51,500
+raat mein bahut kam.
+
+29
+00:00:51,520 --> 00:00:54,120
+Upar se sardi mein hawa bhi dheemi chalti
+
+30
+00:00:54,140 --> 00:00:54,450
+hai.
+
+31
+00:00:54,520 --> 00:00:56,360
+Toh wahi dhuaan ek chhoti si jagah mein
+
+32
+00:00:56,380 --> 00:00:58,540
+bhar jaata hai, aur concentration bahut
+
+33
+00:00:58,560 --> 00:00:59,430
+badh jaata hai.
+
+34
+00:00:59,450 --> 00:01:01,440
+Aur raat bhar ek aur cheez hoti hai.
+
+35
+00:01:01,460 --> 00:01:03,880
+Patakhon ki gases, hawa ki nami ke saath
+
+36
+00:01:03,900 --> 00:01:06,240
+react karke naye chhote kan bana leti
+
+37
+00:01:06,260 --> 00:01:06,630
+hain.
+
+38
+00:01:06,650 --> 00:01:08,625
+Inhe secondary particles kehte hain.
+
+39
+00:01:08,690 --> 00:01:12,000
+Matlab subah tak PM2.5 aur bhi badh sakta
+
+40
+00:01:12,020 --> 00:01:12,330
+hai.
+
+41
+00:01:12,350 --> 00:01:13,490
+Aur aakhri baat.
+
+42
+00:01:13,510 --> 00:01:15,510
+Subah jo AQI aap dekhte ho,
+
+43
+00:01:15,530 --> 00:01:17,070
+woh sirf us pal ki hawa nahi hai.
+
+44
+00:01:17,090 --> 00:01:20,630
+CPCB ka AQI pichle 24 ghante ka average
+
+45
+00:01:20,650 --> 00:01:21,340
+hota hai.
+
+46
+00:01:21,360 --> 00:01:22,705
+Matlab aaj subah ka number,
+
+47
+00:01:22,725 --> 00:01:24,990
+kal raat ke patakhon ko bhi gin raha hai.
+
+48
+00:01:25,010 --> 00:01:26,500
+Toh patakhon ki chemistry,
+
+49
+00:01:26,550 --> 00:01:27,680
+temperature inversion,
+
+50
+00:01:27,700 --> 00:01:29,910
+kam mixing height, raat bhar bante naye
+
+51
+00:01:29,930 --> 00:01:32,160
+kan, aur 24 ghante ka average.
+
+52
+00:01:32,230 --> 00:01:35,350
+Isliye Diwali ke agle din AQI sabse zyada
+
+53
+00:01:35,370 --> 00:01:36,060
+dikhta hai.
+
+54
+00:01:36,080 --> 00:01:38,240
+Filhal khidkiyaan band rakho aur bahar
+
+55
+00:01:38,260 --> 00:01:39,120
+mask pehno.
+
+56
+00:01:39,140 --> 00:01:41,500
+Aur aise roz ke "kyun" ke liye Whysplained
+
+57
+00:01:41,520 --> 00:01:42,730
+ko subscribe karo!
