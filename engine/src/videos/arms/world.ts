@@ -4,7 +4,7 @@
 // router shelf and a wall clock. update(id, f, camera) poses everything for shot `id` at frame f.
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { staticFile } from "remotion";
+import { staticFile, getInputProps } from "remotion";
 import { Batch, boxGeo, V, lam, buildTown, Kit, Ray } from "./build";
 import { ctex, rep, planksHD, cobbleHD, grassHD, cloudHD, rng } from "./paint";
 import { Pen } from "./toon";
@@ -255,7 +255,8 @@ export class World {
     this.hemi = new THREE.HemisphereLight("#cfe6ff", "#6c5c8c", 1.1);
     this.sun = new THREE.DirectionalLight("#fff0d6", 2.6);
     this.sun.castShadow = true;
-    this.sun.shadow.mapSize.set(4096, 4096);
+    const sm = (getInputProps() as { post?: { shadow?: number } }).post?.shadow ?? 4096;
+    this.sun.shadow.mapSize.set(sm, sm);
     R.add(this.hemi, this.sun, this.sun.target);
     this.cloudMaps = { day: [0, 1, 2, 3].map((k) => cloudHD(k, LOOK.day.cloud)), golden: [0, 1, 2, 3].map((k) => cloudHD(k, LOOK.golden.cloud)) };
     for (let i = 0; i < 9; i++) {
