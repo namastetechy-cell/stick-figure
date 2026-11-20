@@ -6,3 +6,7 @@ __pycache__/
 .DS_Store
 .env
 shorts/*/audio/out/
+# toon2d-shorts render intermediates
+.models/
+**/chunks/
+**/.cache/
