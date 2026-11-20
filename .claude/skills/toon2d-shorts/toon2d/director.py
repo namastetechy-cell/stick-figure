@@ -200,6 +200,9 @@ def faces_at(scene, words, t):
     out = []
     for c in scene['cast']:
         st = actor_state(c, scene.get('acts', []), words, t)
+        from .critters import DRAW as _PROPS
+        if st.get('type') in _PROPS:                       # prop actors have no face to keep in frame
+            continue
         if st.get('type') == 'dino':                       # head of the small dinosaur
             s = st.get('scale', 1.0)
             out.append((c['id'], st['x'] + st.get('dir', 1) * 110 * s, st['y'] - 245 * s, 85 * s, c.get('z', 0.97)))
@@ -411,6 +414,7 @@ def actor_state(cast_entry, acts, words, t):
     st.setdefault('pose', 'stand'); st.setdefault('expr', 'neutral')
     mine = sorted([a for a in acts if a.get('who') == cast_entry['id']], key=lambda a: a['w'])
     x0, y0 = st['x'], st['y']
+    s0 = st.get('scale', 1.0)
     for a in mine:
         ta = onset(words, a['w']) + a.get('delay', 0.0)
         if t < ta:
@@ -418,6 +422,11 @@ def actor_state(cast_entry, acts, words, t):
         for k in ('pose', 'expr', 'face', 'dir', 'talk', 'hold', 'look'):
             if k in a:
                 st[k] = a[k]
+        if 'scale' in a:                                    # grow / shrink over 'sdur' (default dur)
+            sd = a.get('sdur', a.get('dur', 0.8))
+            u = (t - ta) / sd
+            st['scale'] = s0 + (a['scale'] - s0) * ease(min(1.0, u)) if u < 1 else a['scale']
+            s0 = a['scale']
         if 'x' in a or 'y' in a:
             nx, ny = a.get('x', x0), a.get('y', y0)
             dur = a.get('dur', 0.8)
@@ -530,7 +539,8 @@ def validate(story, words):
             if not isinstance(c, dict):
                 err.append('%s: cast entries must be objects' % tag)
                 continue
-            if c.get('type') not in ARCHETYPES and c.get('type') != 'dino':
+            from .critters import DRAW as _PROPS
+            if c.get('type') not in ARCHETYPES and c.get('type') != 'dino' and c.get('type') not in _PROPS:
                 err.append('%s: unknown type %r' % (tag, c.get('type')))
             if not (_fin(c.get('x', 0), -1e4, 1e4) and _fin(c.get('y', 0), -1e4, 1e4)):
                 err.append('%s: %s x/y must be numbers' % (tag, c.get('id')))

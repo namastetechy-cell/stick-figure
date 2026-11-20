@@ -47,6 +47,10 @@ ARCHETYPES = {
                       parts=['collar', 'center_buttons', 'belt'], prop=None, width=1.0, skin='#9fe07a', skin_shade='#6ab05a'),
     'caveman':   dict(torso='#c8904a', accent='#6a3e22', pants='#c8904a', shoes='#e8c8a8', hat=None,
                       parts=['fur_tunic'], prop='club', hair='messy_black', width=1.1),
+    'everyman':  dict(torso='#2f9a8a', accent='#f2c640', pants='#3a4a7a', shoes='#2a2230', hat=None,
+                      parts=['polo_collar', 'center_buttons', 'pocket_l'], prop=None, hair='cowlick', width=1.0),
+    'mom':       dict(torso='#d8607a', accent='#f4efe6', pants='#4a3a5a', shoes='#5a2a3a', hat=None,
+                      parts=['collar', 'apron'], prop=None, hair='bob_brown', width=1.02),
     'kid':       dict(torso='#f2b632', accent='#d84a6a', pants='#3f78c8', shoes='#e84a4a', hat='propeller',
                       parts=['tee_star', 'shorts'], prop='balloon', hair='cowlick', width=0.92, kid=True, scarf='#d84a6a'),
 }
@@ -917,7 +921,7 @@ def draw_character(cv, spec, x, y, scale, t, mood_name='day'):
             prop = None
         hp, ha = draw_arm(*arms[1], prop=prop)
         if sp.get('hold_fn'):
-            cv.save(); cv.translate(*hp); sp['hold_fn'](cv, t, mood_name); cv.restore()
+            cv.save(); cv.translate(*hp); cv.scale(sp['dir'], 1); sp['hold_fn'](cv, t, mood_name); cv.restore()
             _hand(ctx, 'mitt', hp, ha, cv)
     # head
     _draw_head(ctx, sp, 0, top - 75, P['head_tilt'], P)

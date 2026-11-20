@@ -84,6 +84,15 @@ class Runtime:
 
         def fn(cv, t, mood):
             st = dr.actor_state(c, sc['acts'], words, t)
+            from . import critters
+            if st['type'] in critters.DRAW:                 # prop actors (cat, mug, phone, germ, atom, sprout)
+                s = st.get('scale', 1.0)
+                sr = critters.SHADOW.get(st['type'], 0)
+                if sr and st.get('shadow', True):
+                    cast_shadow(cv, st['x'], st['y'] + 4 * s, sr * s, sr * 0.22 * s, MOODS[mood], a=0.5)
+                st.setdefault('id', c['id'])
+                critters.DRAW[st['type']](cv, st['x'], st['y'], s, t + c.get('phase', 0.0), mood, st)
+                return
             if st['type'] == 'dino':                        # small friendly dinosaur (not a round-head character)
                 from .prehistoric import draw_dino
                 s = st.get('scale', 1.0)

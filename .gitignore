@@ -10,3 +10,5 @@ shorts/*/audio/out/
 .models/
 **/chunks/
 **/.cache/
+shorts/*/final.mp4
+shorts/*/stills/
