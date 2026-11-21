@@ -1,0 +1,57 @@
+{
+ "title": "thumb",
+ "fps": 30,
+ "end_pad": 1.0,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "t",
+   "start_word": 0,
+   "set": "kitchen",
+   "mood": "night",
+   "bloom": 0.7,
+   "cast": [
+    {
+     "id": "ghost",
+     "type": "ghost",
+     "x": 880,
+     "y": 1300,
+     "scale": 0.62,
+     "z": 1.0,
+     "dir": -1
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 600,
+     "y": 1760,
+     "scale": 1.35,
+     "z": 0.97,
+     "face": 0.0,
+     "pose": "shrug",
+     "expr": "tired"
+    },
+    {
+     "id": "clock",
+     "type": "clock",
+     "x": 270,
+     "y": 1560,
+     "scale": 0.7,
+     "z": 0.97,
+     "time": "3:00",
+     "expr": "calm"
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": [
+      560,
+      1250,
+      1600
+     ]
+    }
+   ]
+  }
+ ]
+}
