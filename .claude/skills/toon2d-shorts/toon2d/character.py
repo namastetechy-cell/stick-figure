@@ -67,6 +67,9 @@ EXPRESSIONS = {
     'sly':      ('half',   (6, -14, 0),                 'smirk',     (0.7, 0)),
     'happy':    ('dot',    (-6, 6, 6),                  'smile',     (0, 0)),
     'deadpan':  ('half',   (0, 0, -2),                  'line',      (0, 0)),
+    'asleep':   ('shut',   (6, -6, -4),                 'o_small',   (0, 0)),
+    'tired':    ('half_bags', (-10, 10, -2),            'wavy',      (0, 0.3)),
+    'dizzy':    ('spiral', (-14, 14, 6),                'wavy',      (0, 0)),
 }
 
 
@@ -617,7 +620,7 @@ def _hat(x, sp, hx, hy, wob):
 
 def _eye(x, kind, ex, ey, look, blink, side):
     cv, g = x.cv, x.g
-    if blink > 0.5 and kind not in ('happy',):
+    if blink > 0.5 and kind not in ('happy', 'shut', 'spiral'):
         cv.drawPath(path_smooth([(ex - 13, ey + 2), (ex, ey + 6), (ex + 13, ey + 2)], close=False), ink(6))
         return
     lx, ly = look[0] * 6, look[1] * 6
@@ -639,6 +642,24 @@ def _eye(x, kind, ex, ey, look, blink, side):
     elif kind == 'happy':
         p = skia.Path(); p.moveTo(ex - 14, ey + 6); p.quadTo(ex, ey - 16, ex + 14, ey + 6)
         cv.drawPath(p, ink(6.5))
+    elif kind == 'shut':                                   # closed, sleeping
+        p = skia.Path(); p.moveTo(ex - 15, ey - 2); p.quadTo(ex, ey + 12, ex + 15, ey - 2)
+        cv.drawPath(p, ink(6.5))
+    elif kind == 'half_bags':                              # heavy lids + bags under the eyes
+        cv.drawPath(ellipse(ex + lx * 1.4, ey + 5 + ly, 10, 10), fill(INK))
+        lid = skia.Path(); lid.addRect(skia.Rect.MakeLTRB(ex - 18, ey - 22, ex + 18, ey + 3))
+        cv.drawPath(lid, fill(g(SKIN)))
+        cv.drawLine(ex - 15, ey + 3, ex + 15, ey + 3, ink(6))
+        for k in (0, 7):
+            b = skia.Path(); b.moveTo(ex - 13, ey + 15 + k); b.quadTo(ex, ey + 24 + k, ex + 13, ey + 15 + k)
+            cv.drawPath(b, stroke('#8a6a9a', 3.5, 0.8))
+    elif kind == 'spiral':                                 # dizzy
+        p = skia.Path(); p.moveTo(ex, ey)
+        for k in range(1, 28):
+            a = k * 0.55 + side * 0.0
+            r = k * 0.62
+            p.lineTo(ex + math.cos(a) * r, ey + math.sin(a) * r)
+        cv.drawPath(p, ink(4))
 
 
 def _mouth(x, kind, mx, my, t):
@@ -654,6 +675,9 @@ def _mouth(x, kind, mx, my, t):
     elif kind == 'frown':
         p = skia.Path(); p.moveTo(mx - 15, my + 6); p.quadTo(mx, my - 8, mx + 15, my + 6)
         cv.drawPath(p, ink(6))
+    elif kind == 'o_small':
+        cv.drawPath(ellipse(mx, my + 2, 6, 7), fill(g('#5a2236')))
+        cv.drawPath(ellipse(mx, my + 2, 6, 7), ink(4))
     elif kind == 'o':
         cv.drawPath(ellipse(mx, my + 2, 9, 12), fill(g('#5a2236')))
         cv.drawPath(ellipse(mx, my + 2, 9, 12), ink(5))

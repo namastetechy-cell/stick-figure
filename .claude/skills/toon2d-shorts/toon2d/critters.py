@@ -313,3 +313,175 @@ def _st(c, w):
 DRAW = {'cat': draw_cat, 'mug_back': draw_mug_back, 'mug': draw_mug, 'phone': draw_phone, 'germ': draw_germ,
         'atom': draw_atom, 'sprout': draw_sprout}
 SHADOW = {'cat': 330, 'mug_back': 0, 'mug': 300, 'phone': 0, 'germ': 90, 'atom': 0, 'sprout': 130}
+
+
+# ----------------------------------------------------------------------------- alarm clock (~420 tall); 'time': "2:00"
+def draw_clock(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    col = st.get('torso', '#d8483a')
+    ring = st.get('expr') == 'ring'
+    hh, mm = (int(v) for v in str(st.get('time', '3:00')).split(':'))
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    if ring:
+        cv.rotate(math.sin(t * 2 * math.pi * 9) * 4)
+    for sx in (-1, 1):                                            # legs + bells
+        cv.drawLine(sx * 90, -60, sx * 130, 0, ink(16))
+        bell = path_smooth([(sx * 60, -330), (sx * 120, -400), (sx * 190, -350), (sx * 150, -300)])
+        cv.drawPath(bell, fill(g('#e8c050'))); cv.drawPath(bell, ink(W))
+    cv.drawLine(0, -360, 0, -400, ink(10)); cv.drawCircle(0, -404, 16, fill(g('#e8c050'))); cv.drawCircle(0, -404, 16, ink(5))
+    body = ellipse(0, -200, 170, 170)
+    cv.drawPath(body, fill(g(col))); cv.drawPath(body, ink(W))
+    face = ellipse(0, -200, 135, 135)
+    cv.drawPath(face, fill(g('#f8f2e2'))); cv.drawPath(face, ink(5))
+    for k in range(12):
+        a = k / 12 * 2 * math.pi
+        r0 = 112 if k % 3 else 100
+        cv.drawLine(math.sin(a) * r0, -200 - math.cos(a) * r0, math.sin(a) * 124, -200 - math.cos(a) * 124, ink(6 if k % 3 == 0 else 4))
+    ha = (hh % 12 + mm / 60) / 12 * 2 * math.pi
+    ma = mm / 60 * 2 * math.pi
+    cv.drawLine(0, -200, math.sin(ha) * 62, -200 - math.cos(ha) * 62, ink(13))
+    cv.drawLine(0, -200, math.sin(ma) * 98, -200 - math.cos(ma) * 98, ink(8))
+    cv.drawCircle(0, -200, 12, fill(INK))
+    cv.drawPath(ellipse(-60, -270, 40, 22), fill('#ffffff', 0.35))
+    if ring:
+        for sx in (-1, 1):
+            for k in range(3):
+                r = 60 + k * 45
+                p = skia.Path(); p.addArc(skia.Rect.MakeLTRB(sx * 250 - r, -420 - r, sx * 250 + r, -420 + r), -60 if sx > 0 else 120, 120)
+                cv.drawPath(p, ink(6, 0.8))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- ghost (hallucination, floats ~500 tall)
+def draw_ghost(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    col = st.get('torso', '#e8e0ff')
+    seed = (hash(st.get('id', '')) % 97) / 97.0
+    bob = math.sin(t * 2 * math.pi / 1.8 + seed * 6) * 30
+    cv.save(); cv.translate(x, y + bob); cv.scale(s * st.get('dir', 1), s)
+    glow = fill('#ffffff'); glow.setShader(rad_grad((0, -260), 330, [skia.Color4f(0.85, 0.7, 1, 0.45).toColor(), skia.Color4f(0.85, 0.7, 1, 0).toColor()]))
+    cv.drawCircle(0, -260, 330, glow)
+    wv = t * 2 * math.pi / 0.9 + seed * 4
+    pts = [(-170, -260), (-150, -440), (0, -520), (150, -440), (170, -260), (160, -40)]
+    for k in range(5):
+        px = 160 - k * 80
+        pts.append((px - 40, 10 + 30 * math.sin(wv + k)))
+        pts.append((px - 80, -40 + 20 * math.sin(wv + k + 1)))
+    pts.append((-170, -60))
+    body = path_smooth(pts)
+    p = fill(g(col), 0.88)
+    cv.drawPath(body, p); cv.drawPath(body, ink(W))
+    for sx in (-1, 1):                                            # arms
+        arm = path_smooth([(sx * 150, -300), (sx * 250, -330 + 20 * math.sin(wv)), (sx * 260, -300 + 20 * math.sin(wv)), (sx * 150, -250)])
+        cv.drawPath(arm, fill(g(col), 0.88)); cv.drawPath(arm, ink(W * 0.8))
+    for sx in (-1, 1):
+        cv.drawPath(ellipse(sx * 55, -360, 26, 38), fill(INK))
+        cv.drawCircle(sx * 55 - 8, -374, 8, fill('#ffffff'))
+    cv.drawPath(ellipse(0, -280, 34, 44), fill(g('#4a2a5a'))); cv.drawPath(ellipse(0, -280, 34, 44), ink(5))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- floating Zzz
+def draw_zzz(cv, x, y, s, t, mood, st):
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    for k in range(3):
+        ph = (t * 0.55 + k / 3) % 1.0
+        zx, zy = 40 * ph + 30 * math.sin(ph * 6 + k), -ph * 260
+        zs = 0.6 + ph * 0.8
+        a = math.sin(ph * math.pi)
+        p = skia.Path()
+        w = 60 * zs
+        p.moveTo(zx - w / 2, zy - w / 2); p.lineTo(zx + w / 2, zy - w / 2); p.lineTo(zx - w / 2, zy + w / 2); p.lineTo(zx + w / 2, zy + w / 2)
+        cv.drawPath(p, ink(22 * zs * 0.6 + 6, a))
+        q = skia.Paint(AntiAlias=True, Style=skia.Paint.kStroke_Style, StrokeWidth=11 * zs * 0.6 + 2,
+                       StrokeCap=skia.Paint.kRound_Cap, StrokeJoin=skia.Paint.kRound_Join)
+        q.setColor4f(skia.Color4f(1, 1, 1, a))
+        cv.drawPath(p, q)
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- tear-off calendar: "DAY n" counting up
+def draw_calendar(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    t0, t1 = st.get('t0', 0.0), st.get('t1', 1.0)
+    d0, d1 = st.get('d0', 1), st.get('d1', 11)
+    u = max(0.0, min(1.0, (t - t0) / max(0.01, t1 - t0)))
+    day = int(round(d0 + (d1 - d0) * u))
+    flip = ((d0 + (d1 - d0) * u) % 1.0) if 0 < u < 1 else 0
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    page = rrect(-170, -460, 340, 440, 22)
+    cv.drawPath(page, fill(g('#f8f2e2'))); cv.drawPath(page, ink(W))
+    head = rrect(-170, -460, 340, 110, 22)
+    cv.drawPath(head, fill(g('#c8343c'))); cv.drawPath(head, ink(W))
+    for k in (-90, 0, 90):
+        cv.drawCircle(k, -460, 14, fill(INK))
+    _txt(cv, str(st.get('label', 'DAY')), 0, -380, 62, '#f8f2e2')
+    _txt(cv, str(day), 0, -120, 190, '#2a2030')
+    if flip > 0.55:                                               # page flying off
+        a = (flip - 0.55) / 0.45
+        cv.save(); cv.translate(120 * a, -300 - 160 * a); cv.rotate(40 * a)
+        fp = rrect(-170, -120, 340, 300, 18)
+        cv.drawPath(fp, fill(g('#f8f2e2'), 1 - a)); cv.drawPath(fp, ink(W, 1 - a))
+        cv.restore()
+    cv.restore()
+
+
+def _txt(cv, s, x, y, size, col):
+    font = skia.Font(_typeface(), size)
+    w = font.measureText(s)
+    cv.drawString(s, x - w / 2, y, font, fill(col))
+
+
+_TF = []
+
+
+def _typeface():
+    if not _TF:
+        import os
+        f = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts', 'Poppins-ExtraBold.ttf')
+        _TF.append(skia.Typeface.MakeFromFile(f))
+    return _TF[0]
+
+
+# ----------------------------------------------------------------------------- lab rat (~240 tall, side view)
+def draw_rat(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    expr = st.get('expr', 'awake')
+    br = math.sin(t * 2 * math.pi / 1.1) * 2
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    if expr == 'ko':
+        cv.rotate(180); cv.translate(0, 120)                     # legs up
+    tail = path_smooth([(-120, -60), (-230, -40), (-320, -90 + 20 * math.sin(t * 3)), (-330, -84 + 20 * math.sin(t * 3)), (-230, -30), (-120, -48)])
+    cv.drawPath(tail, fill(g('#f2a0b0'))); cv.drawPath(tail, ink(4))
+    for lx in (-70, 60):
+        cv.drawPath(ellipse(lx, -8, 26, 14), fill(g('#f2a0b0'))); cv.drawPath(ellipse(lx, -8, 26, 14), ink(4))
+    body = ellipse(0, -90 + br, 150, 88)
+    cv.drawPath(body, fill(g('#f4f0ec'))); cv.drawPath(body, ink(W))
+    head = path_smooth([(90, -150), (160, -170), (250, -110), (260, -90), (170, -60), (100, -70)])
+    cv.drawPath(head, fill(g('#f4f0ec'))); cv.drawPath(head, ink(W))
+    cv.drawCircle(262, -98, 13, fill(g('#f27a90'))); cv.drawCircle(262, -98, 13, ink(4))
+    ear = ellipse(140, -175, 42, 46)
+    cv.drawPath(ear, fill(g('#f2a0b0'))); cv.drawPath(ear, ink(W * 0.8))
+    if expr == 'ko':
+        for d in (-1, 1):
+            cv.drawLine(185 - 12, -128 - 12 * d, 185 + 12, -128 + 12 * d, ink(5))
+    elif expr == 'tired':
+        cv.drawPath(ellipse(188, -122, 16, 18), fill('#ffffff')); cv.drawPath(ellipse(188, -122, 16, 18), ink(4))
+        cv.drawCircle(192, -118, 7, fill(INK))
+        cv.drawLine(170, -126, 206, -126, ink(5))
+        b = skia.Path(); b.moveTo(174, -98); b.quadTo(188, -90, 202, -98); cv.drawPath(b, stroke_c('#8a6a9a', 3.5))
+    else:
+        cv.drawPath(ellipse(188, -122, 16, 18), fill('#ffffff')); cv.drawPath(ellipse(188, -122, 16, 18), ink(4))
+        cv.drawCircle(192, -120, 8, fill(INK))
+    for k in (-1, 0, 1):
+        cv.drawLine(240, -96 + k * 6, 300, -110 + k * 16, ink(2.5, 0.8))
+    cv.restore()
+
+
+def stroke_c(c, w):
+    from .paint import stroke
+    return stroke(c, w)
+
+
+DRAW.update({'clock': draw_clock, 'ghost': draw_ghost, 'zzz': draw_zzz, 'calendar': draw_calendar, 'rat': draw_rat})
+SHADOW.update({'clock': 150, 'ghost': 0, 'zzz': 0, 'calendar': 0, 'rat': 140})
