@@ -573,3 +573,98 @@ def draw_hole(cv, x, y, s, t, mood, st):
 
 DRAW.update({'car': draw_car, 'debris': draw_debris, 'ice': draw_ice, 'hole': draw_hole})
 SHADOW.update({'car': 300, 'debris': 0, 'ice': 0, 'hole': 0})
+
+
+# ----------------------------------------------------------------------------- brain with a body map (~600 wide)
+def draw_brain(cv, x, y, s, t, mood, st):
+    """expr 'map': brain + glowing two-armed body map; 'nomap': plus 8 dashed arms with red question marks."""
+    g = _g(mood)
+    expr = st.get('expr', 'map')
+    br = math.sin(t * 2 * math.pi / 1.6) * 0.012
+    cv.save(); cv.translate(x, y - 300 * s); cv.scale(s * (1 + br), s * (1 - br))
+    glow = fill('#ffffff'); glow.setShader(rad_grad((0, 0), 420, [skia.Color4f(1, 0.85, 0.9, 0.5).toColor(), skia.Color4f(1, 0.8, 0.9, 0).toColor()]))
+    cv.drawCircle(0, 0, 420, glow)
+    outline = path_smooth([(-300, 40), (-310, -80), (-230, -200), (-90, -250), (60, -255), (200, -210), (300, -100),
+                           (310, 40), (240, 150), (80, 190), (-80, 195), (-230, 160)])
+    cv.drawPath(outline, fill(g('#f2a6b8')))
+    cv.save(); cv.clipPath(outline, doAntiAlias=True)
+    for k in range(9):                                             # folds
+        fx = -260 + k * 65
+        f = skia.Path(); f.moveTo(fx, -230); f.cubicTo(fx + 60, -150, fx - 50, -60, fx + 30, 20)
+        f.cubicTo(fx + 80, 80, fx - 20, 140, fx + 20, 200)
+        cv.drawPath(f, stroke_c(shade(g('#f2a6b8'), -0.25), 7))
+    cv.drawPath(ellipse(-120, 80, 200, 90), fill(g('#3a2a5a'), 0.12))
+    cv.drawLine(0, -250, 0, 200, ink(6, 0.6))
+    cv.restore()
+    cv.drawPath(outline, ink(W * 1.2))
+    # body map: a little glowing figure on the brain
+    cv.save(); cv.translate(0, -10)
+    mapc = '#fff6c8'
+    glw = stroke_c(mapc, 26); blurred(glw, 10); glw.setAlphaf(0.6)
+    lines = [((0, -110), (0, 10)), ((0, 10), (-40, 100)), ((0, 10), (40, 100)), ((0, -70), (-75, -10)), ((0, -70), (75, -10))]
+    for a, b in lines:
+        cv.drawLine(*a, *b, glw)
+    for a, b in lines:
+        cv.drawLine(*a, *b, stroke_c(mapc, 12))
+        cv.drawLine(*a, *b, ink(3, 0.5))
+    cv.drawCircle(0, -140, 34, fill(mapc)); cv.drawCircle(0, -140, 34, ink(4))
+    if expr == 'nomap':
+        for k in range(8):
+            side = -1 if k % 2 == 0 else 1
+            row = k // 2
+            ang = math.radians(side * (60 + row * 22))
+            x0, y0 = 0, -60 + row * 14
+            x1, y1 = x0 + math.sin(ang) * 200, y0 + math.cos(ang) * 200
+            p = skia.Path(); p.moveTo(x0, y0); p.lineTo(x1, y1)
+            ds = stroke_c('#c83040', 7); ds.setPathEffect(skia.DashPathEffect.Make([16, 14], (t * 40) % 30))
+            cv.drawPath(p, ds)
+            pop = 1 + 0.15 * math.sin(t * 6 + k)
+            _txt(cv, '?', x1, y1 + 22, 64 * pop, '#c83040')
+    cv.restore()
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- robotic extra thumb (~360 tall)
+def draw_robothumb(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    bend = 14 * math.sin(t * 2.4)
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    base = rrect(-120, -90, 240, 90, 24)
+    cv.drawPath(base, fill(g('#5a6478'))); cv.drawPath(base, ink(W))
+    cv.drawCircle(80, -45, 14, fill('#5ae0ff')); cv.drawCircle(80, -45, 14, ink(4))
+    led = fill('#5ae0ff', 0.4 + 0.4 * math.sin(t * 5)); blurred(led, 10); cv.drawCircle(80, -45, 26, led)
+    cv.save(); cv.translate(-20, -90)
+    for k, (L, w) in enumerate(((120, 90), (100, 80), (80, 72))):
+        cv.rotate(-bend if k else -bend * 0.4)
+        seg = rrect(-w / 2, -L, w, L, 22 if k < 2 else 36)
+        cv.drawPath(seg, fill(g('#c8d0dc'))); cv.drawPath(seg, ink(W))
+        cv.drawLine(-w / 2 + 12, -L + 18, -w / 2 + 12, -18, stroke_c('#ffffff', 6))
+        cv.drawCircle(0, 0, 20, fill(g('#7a8498'))); cv.drawCircle(0, 0, 20, ink(4))
+        cv.translate(0, -L)
+    nail = rrect(-24, 10, 48, 34, 12)
+    cv.drawPath(nail, fill(g('#e8eef4'))); cv.drawPath(nail, ink(4))
+    cv.restore()
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- comic impact burst (flashes)
+def draw_burst(cv, x, y, s, t, mood, st):
+    ph = (t * st.get('rate', 2.6)) % 1.0
+    if ph > 0.55:
+        return
+    k = 0.7 + ph * 0.8
+    cv.save(); cv.translate(x, y); cv.scale(s * k, s * k); cv.rotate(ph * 40)
+    pts = []
+    for i in range(20):
+        a = i / 20 * 2 * math.pi
+        r = 130 if i % 2 == 0 else 62
+        pts.append((math.cos(a) * r, math.sin(a) * r))
+    from .paint import path_poly
+    p = path_poly(pts)
+    cv.drawPath(p, fill('#ffd84a', 1 - ph)); cv.drawPath(p, ink(6, 1 - ph))
+    cv.drawPath(path_poly([(q[0] * 0.5, q[1] * 0.5) for q in pts]), fill('#ffffff', 1 - ph))
+    cv.restore()
+
+
+DRAW.update({'brain': draw_brain, 'robothumb': draw_robothumb, 'burst': draw_burst})
+SHADOW.update({'brain': 0, 'robothumb': 140, 'burst': 0})

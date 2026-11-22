@@ -1,0 +1,471 @@
+{
+ "title": "What if you had 10 arms for one day",
+ "fps": 30,
+ "end_pad": 0.8,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "hook",
+   "start_word": 0,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1700,
+     "scale": 1.2,
+     "z": 1.0,
+     "face": 0.2,
+     "pose": "stand",
+     "expr": "neutral",
+     "arms": 0
+    },
+    {
+     "id": "pop",
+     "type": "burst",
+     "x": -3000,
+     "y": 1350,
+     "scale": 1.6,
+     "z": 0.99,
+     "rate": 1.6
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": "you:face"
+    },
+    {
+     "w": 4,
+     "frame": [
+      540,
+      1320,
+      1350
+     ]
+    },
+    {
+     "w": 9,
+     "frame": [
+      540,
+      1250,
+      1150
+     ]
+    },
+    {
+     "w": 13,
+     "frame": [
+      540,
+      1300,
+      1000
+     ]
+    },
+    {
+     "w": 17,
+     "frame": [
+      540,
+      1300,
+      1300
+     ]
+    },
+    {
+     "w": 21,
+     "frame": "you:face"
+    }
+   ],
+   "acts": [
+    {
+     "w": 4,
+     "who": "you",
+     "arms": 8,
+     "arm_mode": "still",
+     "expr": "shocked"
+    },
+    {
+     "w": 4,
+     "who": "pop",
+     "x": 540,
+     "dur": 0.05
+    },
+    {
+     "w": 6,
+     "who": "pop",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 9,
+     "who": "you",
+     "arm_mode": "wave",
+     "pose": "cheer",
+     "expr": "laughing"
+    },
+    {
+     "w": 17,
+     "who": "you",
+     "arm_mode": "flop",
+     "pose": "stand",
+     "expr": "sad"
+    },
+    {
+     "w": 21,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "scared"
+    }
+   ]
+  },
+  {
+   "id": "brain",
+   "start_word": 22,
+   "set": "office",
+   "mood": "golden",
+   "bloom": 0.7,
+   "cast": [
+    {
+     "id": "brain",
+     "type": "brain",
+     "x": 540,
+     "y": 1300,
+     "scale": 0.8,
+     "z": 0.97,
+     "expr": "map"
+    }
+   ],
+   "keys": [
+    {
+     "w": 22,
+     "frame": [
+      540,
+      1100,
+      1350
+     ]
+    },
+    {
+     "w": 26,
+     "frame": [
+      540,
+      1080,
+      1100
+     ]
+    },
+    {
+     "w": 33,
+     "frame": [
+      540,
+      1060,
+      1000
+     ]
+    },
+    {
+     "w": 35,
+     "frame": [
+      540,
+      1080,
+      1250
+     ]
+    },
+    {
+     "w": 38,
+     "frame": [
+      540,
+      1060,
+      1100
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 35,
+     "who": "brain",
+     "expr": "nomap"
+    }
+   ]
+  },
+  {
+   "id": "flop",
+   "start_word": 40,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1700,
+     "scale": 1.2,
+     "z": 1.0,
+     "face": 0.2,
+     "pose": "stand",
+     "expr": "deadpan",
+     "arms": 8,
+     "arm_mode": "flop"
+    }
+   ],
+   "keys": [
+    {
+     "w": 40,
+     "frame": [
+      540,
+      1300,
+      1150
+     ]
+    },
+    {
+     "w": 42,
+     "frame": [
+      540,
+      1250,
+      950
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lab",
+   "start_word": 44,
+   "set": "office",
+   "mood": "night",
+   "cast": [
+    {
+     "id": "doc",
+     "type": "scientist",
+     "x": 250,
+     "y": 1300,
+     "scale": 1.0,
+     "z": 1.2,
+     "face": 0.3,
+     "pose": "point",
+     "expr": "happy"
+    },
+    {
+     "id": "thumb",
+     "type": "robothumb",
+     "x": 520,
+     "y": 1240,
+     "scale": 0.75,
+     "z": 1.19
+    }
+   ],
+   "keys": [
+    {
+     "w": 44,
+     "frame": [
+      420,
+      1100,
+      1250
+     ]
+    },
+    {
+     "w": 47,
+     "frame": [
+      480,
+      1080,
+      950
+     ]
+    },
+    {
+     "w": 51,
+     "frame": [
+      520,
+      1100,
+      820
+     ]
+    },
+    {
+     "w": 54,
+     "frame": [
+      400,
+      1080,
+      1000
+     ]
+    },
+    {
+     "w": 59,
+     "frame": [
+      420,
+      1100,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 54,
+     "who": "doc",
+     "pose": "cheer",
+     "expr": "laughing"
+    },
+    {
+     "w": 59,
+     "who": "doc",
+     "pose": "shrug",
+     "expr": "deadpan"
+    }
+   ]
+  },
+  {
+   "id": "slap",
+   "start_word": 64,
+   "set": "street",
+   "mood": "day",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1720,
+     "scale": 1.2,
+     "z": 1.0,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "dizzy",
+     "arms": 8,
+     "arm_mode": "flop"
+    },
+    {
+     "id": "b1",
+     "type": "burst",
+     "x": -3000,
+     "y": 1200,
+     "scale": 0.8,
+     "z": 0.99,
+     "rate": 3.1
+    },
+    {
+     "id": "b2",
+     "type": "burst",
+     "x": -3000,
+     "y": 1150,
+     "scale": 0.7,
+     "z": 0.99,
+     "rate": 2.3
+    }
+   ],
+   "keys": [
+    {
+     "w": 64,
+     "frame": [
+      540,
+      1300,
+      1450
+     ]
+    },
+    {
+     "w": 68,
+     "frame": [
+      540,
+      1250,
+      1050
+     ]
+    },
+    {
+     "w": 71,
+     "frame": [
+      540,
+      1200,
+      900
+     ],
+     "roll": 3
+    },
+    {
+     "w": 73,
+     "frame": [
+      540,
+      1230,
+      1050
+     ],
+     "roll": -3
+    }
+   ],
+   "acts": [
+    {
+     "w": 71,
+     "who": "you",
+     "arm_mode": "slap",
+     "expr": "angry"
+    },
+    {
+     "w": 71,
+     "who": "b1",
+     "x": 380,
+     "dur": 0.05
+    },
+    {
+     "w": 72,
+     "who": "b2",
+     "x": 710,
+     "dur": 0.05
+    },
+    {
+     "w": 73,
+     "who": "you",
+     "expr": "dizzy"
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "start_word": 75,
+   "set": "field",
+   "mood": "sunset",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 470,
+     "y": 1960,
+     "scale": 1.3,
+     "z": 0.9,
+     "face": 0.2,
+     "pose": "stand",
+     "expr": "dizzy",
+     "arms": 8,
+     "arm_mode": "flop"
+    }
+   ],
+   "keys": [
+    {
+     "w": 75,
+     "frame": [
+      520,
+      1450,
+      1300
+     ]
+    },
+    {
+     "w": 79,
+     "frame": [
+      540,
+      1380,
+      1100
+     ]
+    },
+    {
+     "w": 83,
+     "frame": [
+      540,
+      1420,
+      1200
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 75,
+     "who": "you",
+     "expr": "happy",
+     "arm_mode": "still"
+    },
+    {
+     "w": 80,
+     "who": "you",
+     "pose": "hold",
+     "hold": "sign:SUBSCRIBE",
+     "expr": "laughing"
+    }
+   ]
+  }
+ ]
+}

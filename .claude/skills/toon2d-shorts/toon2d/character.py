@@ -854,6 +854,36 @@ def _prop(x, kind, p, ang):
     cv.restore()
 
 
+# ============================================================================ extra arms
+def _extra_arms(ctx, sp, sw, sh_y, t):
+    """sp['arms'] extra arms sprouting from the torso sides, behind it. sp['arm_mode']: still|flop|wave|slap."""
+    n = int(sp.get('arms', 0) or 0)
+    if n <= 0:
+        return
+    cv = ctx.cv
+    mode = sp.get('arm_mode', 'flop')
+    for k in range(n):
+        side = -1 if k % 2 == 0 else 1
+        row = k // 2
+        ph = k * 1.37 + 0.6
+        p0 = (side * (sw - 10), sh_y + 22 + row * 26)
+        if mode == 'flop':
+            a1 = side * (55 + row * 10 + 28 * math.sin(t * 3.3 + ph))
+            a2 = a1 + side * (25 + 45 * math.sin(t * 4.1 + ph * 1.7))
+        elif mode == 'wave':
+            a1 = side * (95 + row * 14 + 20 * math.sin(t * 7 + ph))
+            a2 = a1 + side * (30 + 25 * math.sin(t * 9 + ph))
+        elif mode == 'slap':
+            u = math.sin(t * 10 + ph)
+            a1 = side * (130 + 25 * u)
+            a2 = side * (215 + 30 * u)                     # forearm swings in to the face
+        else:
+            a1 = side * (40 + row * 14)
+            a2 = a1 + side * 18
+        p1, p2 = _limb(cv, p0, a1, a2, 60, 56)
+        _hand(ctx, 'mitt', p2, a2, cv)
+
+
 # ============================================================================ main
 def draw_character(cv, spec, x, y, scale, t, mood_name='day'):
     sp = dict(spec)
@@ -910,6 +940,7 @@ def draw_character(cv, spec, x, y, scale, t, mood_name='day'):
         return p2, angs[1]
     if not P['cross']:
         draw_arm(*arms[0])
+    _extra_arms(ctx, sp, sw, sh_y, t)
     if sp.get('scarf'):
         sway = math.sin(t * 3.0 + 1) * 10
         sc = path_smooth([(-30, top + 10), (-60 - sway, top + 70), (-92 - sway * 1.5, top + 120), (-70 - sway, top + 126), (-36, top + 30)])
