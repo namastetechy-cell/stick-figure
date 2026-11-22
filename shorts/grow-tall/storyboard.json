@@ -1,0 +1,622 @@
+{
+ "title": "What if you never stopped growing",
+ "fps": 30,
+ "end_pad": 0.8,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "seven",
+   "start_word": 0,
+   "set": "street",
+   "mood": "day",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1720,
+     "scale": 0.95,
+     "z": 1.0,
+     "face": 0.2,
+     "pose": "stand",
+     "expr": "shocked"
+    },
+    {
+     "id": "scout1",
+     "type": "boss",
+     "x": -250,
+     "y": 1730,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "hold",
+     "expr": "happy",
+     "hold": "sign:NBA DRAFT"
+    },
+    {
+     "id": "scout2",
+     "type": "cop",
+     "x": 1350,
+     "y": 1730,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "hold",
+     "expr": "laughing",
+     "hold": "tag:$50M"
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": "you:face"
+    },
+    {
+     "w": 3,
+     "frame": [
+      540,
+      1300,
+      1700
+     ]
+    },
+    {
+     "w": 9,
+     "frame": [
+      540,
+      1250,
+      1500
+     ]
+    },
+    {
+     "w": 12,
+     "frame": [
+      540,
+      1000,
+      900
+     ]
+    },
+    {
+     "w": 15,
+     "frame": [
+      540,
+      1350,
+      1600
+     ]
+    },
+    {
+     "w": 19,
+     "frame": [
+      540,
+      1150,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 3,
+     "who": "you",
+     "scale": 1.5,
+     "sdur": 1.6
+    },
+    {
+     "w": 9,
+     "who": "you",
+     "expr": "smug"
+    },
+    {
+     "w": 12,
+     "who": "you",
+     "pose": "cheer",
+     "expr": "laughing"
+    },
+    {
+     "w": 15,
+     "who": "scout1",
+     "x": 220,
+     "dur": 0.5
+    },
+    {
+     "w": 16,
+     "who": "scout2",
+     "x": 860,
+     "dur": 0.5
+    },
+    {
+     "w": 18,
+     "who": "scout1",
+     "talk": true
+    },
+    {
+     "w": 18,
+     "who": "scout2",
+     "talk": true
+    }
+   ]
+  },
+  {
+   "id": "roof",
+   "start_word": 22,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1720,
+     "scale": 2.1,
+     "z": 1.0,
+     "face": 0.2,
+     "pose": "stand",
+     "expr": "neutral",
+     "face_check": false
+    },
+    {
+     "id": "hole",
+     "type": "hole",
+     "x": -3000,
+     "y": 70,
+     "scale": 1.3,
+     "z": 1.0
+    },
+    {
+     "id": "debris",
+     "type": "debris",
+     "x": -3000,
+     "y": 100,
+     "scale": 1.2,
+     "z": 0.97
+    }
+   ],
+   "keys": [
+    {
+     "w": 22,
+     "frame": [
+      540,
+      1100,
+      1700
+     ]
+    },
+    {
+     "w": 25,
+     "frame": [
+      540,
+      960,
+      1920
+     ]
+    },
+    {
+     "w": 28,
+     "frame": [
+      540,
+      700,
+      1400
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 24,
+     "who": "you",
+     "expr": "shocked"
+    },
+    {
+     "w": 26,
+     "who": "you",
+     "scale": 4.2,
+     "sdur": 0.35,
+     "pose": "cheer"
+    },
+    {
+     "w": 26,
+     "who": "hole",
+     "x": 540,
+     "dur": 0.05,
+     "delay": 0.25
+    },
+    {
+     "w": 26,
+     "who": "debris",
+     "x": 540,
+     "dur": 0.05,
+     "delay": 0.25
+    }
+   ]
+  },
+  {
+   "id": "parking",
+   "start_word": 31,
+   "set": "street",
+   "mood": "night",
+   "cast": [
+    {
+     "id": "car1",
+     "type": "car",
+     "x": 170,
+     "y": 1800,
+     "scale": 0.45,
+     "z": 0.98,
+     "torso": "#3f8ac8"
+    },
+    {
+     "id": "car2",
+     "type": "car",
+     "x": 920,
+     "y": 1790,
+     "scale": 0.45,
+     "z": 0.98,
+     "torso": "#e8a83a",
+     "dir": -1
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1760,
+     "scale": 2.0,
+     "z": 1.0,
+     "face": 0.2,
+     "pose": "sit",
+     "expr": "asleep"
+    },
+    {
+     "id": "zzz",
+     "type": "zzz",
+     "x": 700,
+     "y": 760,
+     "scale": 1.5,
+     "z": 0.99
+    }
+   ],
+   "keys": [
+    {
+     "w": 31,
+     "frame": [
+      540,
+      1200,
+      1800
+     ]
+    },
+    {
+     "w": 34,
+     "frame": [
+      560,
+      1150,
+      1250
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hundred",
+   "start_word": 37,
+   "set": "desert_rails",
+   "mood": "golden",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 560,
+     "y": 1980,
+     "scale": 4.8,
+     "z": 1.0,
+     "face": 0.2,
+     "pose": "hips",
+     "expr": "smug",
+     "face_check": false
+    },
+    {
+     "id": "cop",
+     "type": "cop",
+     "x": 250,
+     "y": 1930,
+     "scale": 0.4,
+     "z": 0.97,
+     "face": 0.4,
+     "pose": "point",
+     "expr": "angry"
+    },
+    {
+     "id": "irs",
+     "type": "boss",
+     "x": 1350,
+     "y": 1940,
+     "scale": 0.42,
+     "z": 0.97,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "hold",
+     "expr": "smug",
+     "hold": "sign:TAX x3"
+    }
+   ],
+   "keys": [
+    {
+     "w": 37,
+     "frame": [
+      560,
+      960,
+      1920
+     ]
+    },
+    {
+     "w": 40,
+     "frame": [
+      300,
+      1720,
+      820
+     ]
+    },
+    {
+     "w": 44,
+     "frame": [
+      560,
+      1600,
+      1250
+     ]
+    },
+    {
+     "w": 46,
+     "frame": [
+      800,
+      1720,
+      820
+     ]
+    },
+    {
+     "w": 50,
+     "frame": [
+      560,
+      1550,
+      1400
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 42,
+     "who": "cop",
+     "pose": "hold",
+     "expr": "sad",
+     "hold": "sign:WE GIVE UP"
+    },
+    {
+     "w": 44,
+     "who": "irs",
+     "x": 820,
+     "dur": 0.6
+    },
+    {
+     "w": 47,
+     "who": "irs",
+     "talk": true
+    },
+    {
+     "w": 47,
+     "who": "you",
+     "expr": "shocked"
+    }
+   ]
+  },
+  {
+   "id": "space",
+   "start_word": 53,
+   "set": "street",
+   "mood": "night",
+   "bloom": 0.6,
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 3000,
+     "scale": 3.0,
+     "z": 1.0,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "happy"
+    },
+    {
+     "id": "ice",
+     "type": "ice",
+     "x": -3000,
+     "y": 820,
+     "scale": 1.7,
+     "z": 0.99
+    }
+   ],
+   "keys": [
+    {
+     "w": 53,
+     "frame": [
+      540,
+      520,
+      1150
+     ]
+    },
+    {
+     "w": 57,
+     "frame": [
+      540,
+      520,
+      1000
+     ]
+    },
+    {
+     "w": 61,
+     "frame": [
+      540,
+      560,
+      1150
+     ]
+    },
+    {
+     "w": 63,
+     "frame": [
+      540,
+      540,
+      1000
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 54,
+     "who": "you",
+     "y": 1625,
+     "dur": 1.0
+    },
+    {
+     "w": 58,
+     "who": "you",
+     "expr": "shocked"
+    },
+    {
+     "w": 61,
+     "who": "you",
+     "expr": "deadpan",
+     "skin": "#a8d8f0"
+    },
+    {
+     "w": 61,
+     "who": "ice",
+     "x": 540,
+     "dur": 0.05,
+     "delay": 0.15
+    }
+   ]
+  },
+  {
+   "id": "landlord",
+   "start_word": 66,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "hole",
+     "type": "hole",
+     "x": 540,
+     "y": 80,
+     "scale": 1.3,
+     "z": 1.0
+    },
+    {
+     "id": "lord",
+     "type": "boss",
+     "x": 560,
+     "y": 1720,
+     "scale": 1.15,
+     "z": 1.0,
+     "face": 0.1,
+     "pose": "point",
+     "expr": "smug"
+    }
+   ],
+   "keys": [
+    {
+     "w": 66,
+     "frame": [
+      560,
+      1150,
+      1150
+     ]
+    },
+    {
+     "w": 69,
+     "frame": "lord"
+    },
+    {
+     "w": 75,
+     "frame": [
+      540,
+      380,
+      1000
+     ]
+    },
+    {
+     "w": 78,
+     "frame": [
+      560,
+      1250,
+      1100
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 70,
+     "who": "lord",
+     "pose": "hold",
+     "hold": "sign:DEPOSIT KEPT",
+     "expr": "sly"
+    },
+    {
+     "w": 77,
+     "who": "lord",
+     "pose": "point",
+     "hold": null,
+     "expr": "angry"
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "start_word": 80,
+   "set": "field",
+   "mood": "sunset",
+   "cast": [
+    {
+     "id": "boss",
+     "type": "worker",
+     "x": 580,
+     "y": 1960,
+     "scale": 1.25,
+     "z": 0.9,
+     "face": 0.2,
+     "pose": "hold",
+     "expr": "happy",
+     "hold": "sign:SUBSCRIBE"
+    }
+   ],
+   "keys": [
+    {
+     "w": 80,
+     "frame": "boss"
+    },
+    {
+     "w": 82,
+     "frame": [
+      580,
+      1500,
+      1250
+     ]
+    },
+    {
+     "w": 86,
+     "frame": [
+      580,
+      1400,
+      1000
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 82,
+     "who": "boss",
+     "hold": "sign:QUIT AT ? FT",
+     "expr": "sly"
+    },
+    {
+     "w": 87,
+     "who": "boss",
+     "pose": "cheer",
+     "hold": null,
+     "expr": "laughing"
+    }
+   ]
+  }
+ ]
+}

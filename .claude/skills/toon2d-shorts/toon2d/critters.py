@@ -485,3 +485,91 @@ def stroke_c(c, w):
 
 DRAW.update({'clock': draw_clock, 'ghost': draw_ghost, 'zzz': draw_zzz, 'calendar': draw_calendar, 'rat': draw_rat})
 SHADOW.update({'clock': 150, 'ghost': 0, 'zzz': 0, 'calendar': 0, 'rat': 140})
+
+
+# ----------------------------------------------------------------------------- car (side view, ~260 tall, 620 long)
+def draw_car(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    col = st.get('torso', '#d8483a')
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    body = path_smooth([(-310, -40), (-300, -150), (-160, -170), (-90, -260), (120, -260), (200, -170), (300, -150), (310, -40)], tension=0.25)
+    cv.drawPath(body, fill(g(col)))
+    cv.save(); cv.clipPath(body, doAntiAlias=True)
+    cv.drawRect(skia.Rect.MakeLTRB(-320, -90, 320, -30), fill(g(shade(col, -0.25))))
+    cv.restore()
+    cv.drawPath(body, ink(W))
+    for wx0, wx1 in ((-70, 10), (30, 110)):
+        win = path_smooth([(wx0, -170), (wx0 + 15, -240), (wx1 - 10, -240), (wx1 + 20, -170)], tension=0.1)
+        cv.drawPath(win, fill(g('#a8d8f0'))); cv.drawPath(win, ink(5))
+    if mood in ('night', 'dream'):
+        lp = fill('#fff2b0', 0.9); cv.drawPath(ellipse(295, -110, 16, 12), lp)
+    cv.drawPath(ellipse(295, -110, 16, 12), ink(4))
+    for wx in (-180, 180):
+        cv.drawCircle(wx, -40, 62, fill(INK)); cv.drawCircle(wx, -40, 28, fill(g('#b8b8c8')))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- falling debris (planks + plaster), loops
+def draw_debris(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    for k in range(14):
+        ph = (t * 0.9 + k * 0.137) % 1.0
+        dx = ((k * 97) % 600) - 300 + math.sin(k) * 40 * ph
+        dy = ph * ph * 1400
+        cv.save(); cv.translate(dx, dy); cv.rotate(ph * 360 * (1 if k % 2 else -1) + k * 20)
+        if k % 3 == 0:
+            p = rrect(-60, -12, 120, 24, 4); c = '#a8743e'
+        else:
+            p = path_smooth([(-22, -18), (20, -24), (28, 10), (-6, 24), (-26, 6)], tension=0.1); c = '#e8dcc8'
+        cv.drawPath(p, fill(g(c))); cv.drawPath(p, ink(4))
+        cv.restore()
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- ice block (freeze a head), ~ 460 wide
+def draw_ice(cv, x, y, s, t, mood, st):
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    blk = path_smooth([(-230, -40), (-220, -430), (-60, -470), (210, -440), (240, -60), (40, 0)], tension=0.08)
+    p = fill('#bfe8ff', 0.55)
+    cv.drawPath(blk, p); cv.drawPath(blk, stroke_c('#e8f8ff', 10)); cv.drawPath(blk, ink(5, 0.7))
+    for k in range(4):
+        cv.drawLine(-170 + k * 40, -400 + k * 20, -120 + k * 40, -300 + k * 20, stroke_c('#ffffff', 8))
+    for k in range(7):                                             # icicles
+        ix = -200 + k * 65
+        ic = path_smooth([(ix - 18, -10), (ix + 18, -10), (ix, 50 + (k % 3) * 30)], tension=0.05)
+        cv.drawPath(ic, fill('#d8f4ff', 0.85)); cv.drawPath(ic, ink(3.5, 0.7))
+    tw = (t * 1.3) % 1.0
+    sp = fill('#ffffff', math.sin(tw * math.pi))
+    cv.drawCircle(150, -380, 10 + 8 * tw, sp)
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- jagged hole in a ceiling / roof
+def draw_hole(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    pts = []
+    for k in range(18):
+        a = k / 18 * 2 * math.pi
+        r = 230 + (60 if k % 2 else -20) + 25 * math.sin(k * 2.3)
+        pts.append((math.cos(a) * r, math.sin(a) * r * 0.55))
+    hole = path_smooth(pts, tension=0.05)
+    sky = fill('#ffffff'); sky.setShader(lin_grad((0, -150), (0, 150), ['#7ac0f0', '#cbe8ff']))
+    cv.drawPath(hole, sky)
+    cv.save(); cv.clipPath(hole, doAntiAlias=True)
+    cv.drawPath(ellipse(-60, -40, 120, 50), fill('#ffffff', 0.8))
+    cv.restore()
+    cv.drawPath(hole, ink(W * 1.2))
+    for k in range(5):                                             # broken plank ends
+        a = k / 5 * 2 * math.pi + 0.3
+        bx, by = math.cos(a) * 250, math.sin(a) * 140
+        pl = rrect(-50, -12, 100, 24, 3)
+        cv.save(); cv.translate(bx, by); cv.rotate(math.degrees(a) + 20)
+        cv.drawPath(pl, fill(g('#a8743e'))); cv.drawPath(pl, ink(4))
+        cv.restore()
+    cv.restore()
+
+
+DRAW.update({'car': draw_car, 'debris': draw_debris, 'ice': draw_ice, 'hole': draw_hole})
+SHADOW.update({'car': 300, 'debris': 0, 'ice': 0, 'hole': 0})

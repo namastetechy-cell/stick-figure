@@ -201,7 +201,7 @@ def faces_at(scene, words, t):
     for c in scene['cast']:
         st = actor_state(c, scene.get('acts', []), words, t)
         from .critters import DRAW as _PROPS
-        if st.get('type') in _PROPS:                       # prop actors have no face to keep in frame
+        if st.get('type') in _PROPS or c.get('face_check') is False:   # props / deliberate giants: no face check
             continue
         if st.get('type') == 'dino':                       # head of the small dinosaur
             s = st.get('scale', 1.0)
@@ -419,7 +419,7 @@ def actor_state(cast_entry, acts, words, t):
         ta = onset(words, a['w']) + a.get('delay', 0.0)
         if t < ta:
             break
-        for k in ('pose', 'expr', 'face', 'dir', 'talk', 'hold', 'look'):
+        for k in ('pose', 'expr', 'face', 'dir', 'talk', 'hold', 'look', 'skin', 'torso'):
             if k in a:
                 st[k] = a[k]
         if 'scale' in a:                                    # grow / shrink over 'sdur' (default dur)
