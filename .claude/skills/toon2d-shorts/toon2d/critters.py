@@ -416,7 +416,7 @@ def draw_calendar(cv, x, y, s, t, mood, st):
     for k in (-90, 0, 90):
         cv.drawCircle(k, -460, 14, fill(INK))
     _txt(cv, str(st.get('label', 'DAY')), 0, -380, 62, '#f8f2e2')
-    _txt(cv, str(day), 0, -120, 190, '#2a2030')
+    _txt(cv, str(day), 0, -120 - (0 if len(str(day)) < 3 else 30), 190 if len(str(day)) < 3 else 190 * 2.3 / len(str(day)), '#2a2030')
     if flip > 0.55:                                               # page flying off
         a = (flip - 0.55) / 0.45
         cv.save(); cv.translate(120 * a, -300 - 160 * a); cv.rotate(40 * a)
@@ -668,3 +668,153 @@ def draw_burst(cv, x, y, s, t, mood, st):
 
 DRAW.update({'brain': draw_brain, 'robothumb': draw_robothumb, 'burst': draw_burst})
 SHADOW.update({'brain': 0, 'robothumb': 140, 'burst': 0})
+
+
+# ----------------------------------------------------------------------------- shared little walking legs
+def _legs(cv, t, moving, run=False, y0=0, w=34, L=70):
+    ph = t * (2.8 if run else 1.9) * 2 * math.pi
+    A = (40 if run else 24) if moving else 0
+    for side, k in ((-1, 0), (1, math.pi)):
+        a = math.radians(A * math.sin(ph + k))
+        hx = side * w
+        fx, fy = hx + math.sin(a) * L, y0 + math.cos(a) * L
+        cv.drawLine(hx, y0 - 4, fx, fy - 8, ink(10))
+        cv.drawPath(path_smooth([(fx - 12, fy - 14), (fx + 26, fy - 14), (fx + 28, fy), (fx - 14, fy)]), fill(INK))
+
+
+# ----------------------------------------------------------------------------- photon: a walking ball of light (~330 tall)
+def draw_photon(cv, x, y, s, t, mood, st):
+    moving = st.get('pose') in ('walk', 'run')
+    run = st.get('pose') == 'run'
+    bob = -abs(math.sin(t * (2.8 if run else 1.9) * math.pi)) * (14 if moving else 4)
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    _legs(cv, t, moving, run, y0=-70)
+    cv.translate(0, bob)
+    halo = fill('#ffffff'); halo.setShader(rad_grad((0, -200), 260, [skia.Color4f(1, 0.95, 0.6, 0.8).toColor(), skia.Color4f(1, 0.9, 0.5, 0).toColor()]))
+    cv.drawCircle(0, -200, 260, halo)
+    for k in range(10):                                            # rays
+        a = k / 10 * 2 * math.pi + t * 0.8
+        cv.drawLine(math.cos(a) * 150, -200 + math.sin(a) * 150, math.cos(a) * 200, -200 + math.sin(a) * 200, stroke_c('#ffe27a', 9))
+    body = ellipse(0, -200, 125, 125)
+    p = fill('#ffffff'); p.setShader(rad_grad((-30, -240), 170, ['#fffbe0', '#ffd23a']))
+    cv.drawPath(body, p); cv.drawPath(body, ink(W))
+    expr = st.get('expr', 'happy')
+    for sx in (-1, 1):
+        if _blink(t, 0.3):
+            cv.drawLine(sx * 40 - 14, -215, sx * 40 + 14, -215, ink(6)); continue
+        cv.drawPath(ellipse(sx * 40, -215, 14, 19), fill(INK)); cv.drawCircle(sx * 40 - 4, -222, 5, fill('#ffffff'))
+    m = skia.Path()
+    if expr == 'tired':
+        m.moveTo(-24, -160); m.quadTo(0, -170, 24, -160)
+        for sx in (-1, 1):
+            cv.drawLine(sx * 40 - 18, -230, sx * 40 + 18, -230, ink(6))
+    else:
+        m.moveTo(-30, -168); m.quadTo(0, -140, 30, -168)
+    cv.drawPath(m, ink(6))
+    cv.drawCircle(-70, -185, 16, fill('#f29a6a', 0.6)); cv.drawCircle(70, -185, 16, fill('#f29a6a', 0.6))
+    if st.get('hold_smile'):                                       # carries a smile (friend's) on a little sign
+        cv.drawLine(110, -210, 160, -300, ink(8))
+        sm = skia.Path(); sm.moveTo(130, -330); sm.quadTo(175, -280, 220, -330)
+        cv.drawPath(sm, ink(10))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- the Sun with a face (~radius 260)
+def draw_sun(cv, x, y, s, t, mood, st):
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    halo = fill('#ffffff'); halo.setShader(rad_grad((0, 0), 520, [skia.Color4f(1, 0.85, 0.4, 0.75).toColor(), skia.Color4f(1, 0.7, 0.3, 0).toColor()]))
+    cv.drawCircle(0, 0, 520, halo)
+    for k in range(16):
+        a = k / 16 * 2 * math.pi + t * 0.25
+        r0, r1 = 290, 370 + 25 * math.sin(t * 3 + k)
+        tri = path_smooth([(math.cos(a - 0.08) * r0, math.sin(a - 0.08) * r0), (math.cos(a) * r1, math.sin(a) * r1),
+                           (math.cos(a + 0.08) * r0, math.sin(a + 0.08) * r0)], tension=0.05)
+        cv.drawPath(tri, fill('#ffc83a')); cv.drawPath(tri, ink(5))
+    body = ellipse(0, 0, 260, 260)
+    p = fill('#ffffff'); p.setShader(rad_grad((-70, -80), 340, ['#fff2a0', '#ffb02a']))
+    cv.drawPath(body, p); cv.drawPath(body, ink(W * 1.2))
+    expr = st.get('expr', 'happy')
+    for sx in (-1, 1):
+        ex, ey = sx * 85, -40
+        if expr == 'old':
+            cv.drawLine(ex - 30, ey, ex + 30, ey, ink(8))
+            b = skia.Path(); b.moveTo(ex - 36, ey - 34); b.quadTo(ex, ey - 54, ex + 36, ey - 34); cv.drawPath(b, stroke_c('#ffffff', 12))
+        else:
+            cv.drawPath(ellipse(ex, ey, 22, 30), fill(INK)); cv.drawCircle(ex - 6, ey - 10, 8, fill('#ffffff'))
+    if expr == 'old':                                              # white beard + wrinkles = very old light
+        beard = path_smooth([(-150, 60), (0, 110), (150, 60), (110, 230), (0, 300), (-110, 230)])
+        cv.drawPath(beard, fill('#f6f2ea')); cv.drawPath(beard, ink(6))
+        for k in range(3):
+            w = skia.Path(); w.moveTo(-60, -150 + k * 22); w.quadTo(0, -162 + k * 22, 60, -150 + k * 22); cv.drawPath(w, ink(4, 0.6))
+    m = skia.Path(); m.moveTo(-70, 60); m.quadTo(0, 120, 70, 60); cv.drawPath(m, ink(8))
+    cv.drawCircle(-150, 30, 30, fill('#f2785a', 0.5)); cv.drawCircle(150, 30, 30, fill('#f2785a', 0.5))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- full-length standing mirror (~1000 tall)
+def draw_mirror(cv, x, y, s, t, mood, st):
+    """Draw it BEHIND the reflection actor (larger z); 'mirror_frame' draws the frame + sheen in front."""
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    for sx in (-1, 1):
+        cv.drawLine(sx * 150, -40, sx * 210, 0, ink(16))
+    glass = ellipse(0, -520, 230, 470)
+    p = fill('#ffffff'); p.setShader(lin_grad((-230, -990), (230, -50), [g('#cfe6f2'), g('#9ec4dc')]))
+    cv.drawPath(glass, p)
+    cv.restore()
+
+
+def draw_mirror_frame(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    glass = ellipse(0, -520, 230, 470)
+    cv.save(); cv.clipPath(glass, doAntiAlias=True)
+    for k in range(2):
+        sh = skia.Path(); sh.moveTo(-200 + k * 90, -800); sh.lineTo(-120 + k * 90, -800); sh.lineTo(40 + k * 90, -200); sh.lineTo(-40 + k * 90, -200)
+        cv.drawPath(sh, fill('#ffffff', 0.18))
+    cv.restore()
+    ring = skia.Path(); ring.addOval(skia.Rect.MakeLTRB(-262, -1022, 262, -18)); ring.addOval(skia.Rect.MakeLTRB(-230, -990, 230, -50))
+    ring.setFillType(skia.PathFillType.kEvenOdd)
+    cv.drawPath(ring, fill(g('#b8823e'))); cv.drawPath(ring, ink(W))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- pyramid (~500 tall, 900 wide)
+def draw_pyramid(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    col = st.get('torso', '#e8c07a')
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    left = path_smooth([(-450, 0), (0, -520), (60, 0)], tension=0.0)
+    right = path_smooth([(60, 0), (0, -520), (450, 0)], tension=0.0)
+    cv.drawPath(left, fill(g(col))); cv.drawPath(right, fill(g(shade(col, -0.3))))
+    for k in range(1, 9):                                          # stone courses
+        yy = -k * 58
+        hw = 450 * (1 - k * 58 / 520)
+        cv.drawLine(-hw, yy, hw, yy, ink(3, 0.45))
+    cv.drawPath(path_smooth([(-450, 0), (0, -520), (450, 0)], tension=0.0), ink(W))
+    cv.drawLine(0, -520, 60, 0, ink(4, 0.6))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- a walking SUBSCRIBE button (~420 wide)
+def draw_subbutton(cv, x, y, s, t, mood, st):
+    moving = st.get('pose') in ('walk', 'run')
+    bob = -abs(math.sin(t * 1.9 * math.pi)) * (12 if moving else 0)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    _legs(cv, t, moving, False, y0=-70, w=70)
+    cv.translate(0, bob)
+    glow = fill('#ffffff'); glow.setShader(rad_grad((0, -170), 330, [skia.Color4f(1, 0.4, 0.4, 0.55).toColor(), skia.Color4f(1, 0.4, 0.4, 0).toColor()]))
+    cv.drawCircle(0, -170, 330, glow)
+    btn = rrect(-210, -250, 420, 170, 60)
+    cv.drawPath(rrect(-202, -238, 420, 170, 60), fill(INK))
+    p = fill('#ffffff'); p.setShader(lin_grad((0, -250), (0, -80), ['#ff5a4a', '#d8202a']))
+    cv.drawPath(btn, p); cv.drawPath(btn, ink(W))
+    _txt(cv, 'SUBSCRIBE', 0, -145, 58, '#ffffff')
+    for sx in (-1, 1):                                             # tiny face on top edge
+        cv.drawCircle(sx * 40, -205, 8, fill('#ffffff'))
+    cv.restore()
+
+
+DRAW.update({'photon': draw_photon, 'sun': draw_sun, 'mirror': draw_mirror, 'mirror_frame': draw_mirror_frame,
+             'pyramid': draw_pyramid, 'subbutton': draw_subbutton})
+SHADOW.update({'photon': 110, 'sun': 0, 'mirror': 220, 'mirror_frame': 0, 'pyramid': 0, 'subbutton': 150})

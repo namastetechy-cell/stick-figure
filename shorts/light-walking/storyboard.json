@@ -1,0 +1,609 @@
+{
+ "title": "What if light moved at walking speed",
+ "fps": 30,
+ "end_pad": 0.8,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "street",
+   "start_word": 0,
+   "set": "street",
+   "mood": "day",
+   "cast": [
+    {
+     "id": "sun",
+     "type": "sun",
+     "x": 760,
+     "y": 330,
+     "scale": 0.5,
+     "z": 1.0,
+     "expr": "old"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 250,
+     "y": 1730,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "id": "pal",
+     "type": "cashier",
+     "x": 860,
+     "y": 1730,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "id": "ph",
+     "type": "photon",
+     "x": 520,
+     "y": 1770,
+     "scale": 0.55,
+     "z": 0.98
+    },
+    {
+     "id": "ph2",
+     "type": "photon",
+     "x": -3000,
+     "y": 1770,
+     "scale": 0.5,
+     "z": 0.98,
+     "dir": -1,
+     "hold_smile": true
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": [
+      520,
+      1600,
+      800
+     ]
+    },
+    {
+     "w": 4,
+     "frame": [
+      560,
+      1450,
+      1250
+     ]
+    },
+    {
+     "w": 8,
+     "frame": [
+      550,
+      1350,
+      1500
+     ]
+    },
+    {
+     "w": 12,
+     "frame": [
+      320,
+      1400,
+      950
+     ]
+    },
+    {
+     "w": 15,
+     "frame": [
+      760,
+      420,
+      900
+     ]
+    },
+    {
+     "w": 18,
+     "frame": [
+      720,
+      560,
+      1200
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 3,
+     "who": "ph",
+     "x": 640,
+     "dur": 1.6
+    },
+    {
+     "w": 8,
+     "who": "ph",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 8,
+     "who": "pal",
+     "expr": "happy"
+    },
+    {
+     "w": 9,
+     "who": "ph2",
+     "x": 820,
+     "dur": 0.05
+    },
+    {
+     "w": 9,
+     "who": "ph2",
+     "x": 400,
+     "dur": 1.6,
+     "delay": 0.1
+    },
+    {
+     "w": 13,
+     "who": "you",
+     "expr": "happy",
+     "delay": 0.2
+    },
+    {
+     "w": 15,
+     "who": "you",
+     "expr": "shocked",
+     "look": [
+      0.5,
+      -1
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mirror",
+   "start_word": 21,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "mirror",
+     "type": "mirror",
+     "x": 770,
+     "y": 1720,
+     "scale": 0.85,
+     "z": 1.02
+    },
+    {
+     "id": "refl",
+     "type": "everyman",
+     "x": 770,
+     "y": 1600,
+     "scale": 0.7,
+     "z": 1.01,
+     "face": -0.5,
+     "dir": -1,
+     "pose": "stand",
+     "expr": "neutral",
+     "shadow": false,
+     "face_check": false
+    },
+    {
+     "id": "frame",
+     "type": "mirror_frame",
+     "x": 770,
+     "y": 1720,
+     "scale": 0.85,
+     "z": 1.005
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 330,
+     "y": 1720,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.5,
+     "pose": "stand",
+     "expr": "neutral"
+    }
+   ],
+   "keys": [
+    {
+     "w": 21,
+     "frame": [
+      550,
+      1300,
+      1550
+     ]
+    },
+    {
+     "w": 24,
+     "frame": [
+      430,
+      1300,
+      1150
+     ]
+    },
+    {
+     "w": 28,
+     "frame": [
+      520,
+      1300,
+      1300
+     ]
+    },
+    {
+     "w": 31,
+     "frame": [
+      770,
+      1300,
+      950
+     ]
+    },
+    {
+     "w": 34,
+     "frame": [
+      560,
+      1300,
+      1400
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 28,
+     "who": "you",
+     "pose": "wave",
+     "expr": "happy"
+    },
+    {
+     "w": 32,
+     "who": "refl",
+     "pose": "wave",
+     "expr": "happy"
+    },
+    {
+     "w": 34,
+     "who": "you",
+     "pose": "stand",
+     "expr": "shocked"
+    },
+    {
+     "w": 35,
+     "who": "refl",
+     "expr": "smug"
+    }
+   ]
+  },
+  {
+   "id": "sun8",
+   "start_word": 37,
+   "set": "desert_rails",
+   "mood": "day",
+   "cast": [
+    {
+     "id": "sun",
+     "type": "sun",
+     "x": 540,
+     "y": 520,
+     "scale": 0.8,
+     "z": 1.0,
+     "expr": "happy"
+    },
+    {
+     "id": "fast",
+     "type": "photon",
+     "x": 540,
+     "y": 1350,
+     "scale": 0.2,
+     "z": 0.98
+    },
+    {
+     "id": "slow",
+     "type": "photon",
+     "x": -3000,
+     "y": 1720,
+     "scale": 0.55,
+     "z": 0.98,
+     "expr": "tired"
+    },
+    {
+     "id": "cal8",
+     "type": "calendar",
+     "x": -3000,
+     "y": 1650,
+     "scale": 0.7,
+     "z": 0.97,
+     "label": "MIN",
+     "d0": 8,
+     "d1": 8,
+     "t0": 0,
+     "t1": 1,
+     "shadow": false
+    },
+    {
+     "id": "calY",
+     "type": "calendar",
+     "x": -3000,
+     "y": 1650,
+     "scale": 0.7,
+     "z": 0.97,
+     "label": "YEARS",
+     "d0": 0,
+     "d1": 3000,
+     "t0": 16.4,
+     "t1": 17.9,
+     "shadow": false
+    }
+   ],
+   "keys": [
+    {
+     "w": 37,
+     "frame": [
+      540,
+      700,
+      1250
+     ]
+    },
+    {
+     "w": 40,
+     "frame": [
+      540,
+      1150,
+      1920
+     ]
+    },
+    {
+     "w": 45,
+     "frame": [
+      620,
+      1450,
+      1250
+     ]
+    },
+    {
+     "w": 50,
+     "frame": [
+      560,
+      1450,
+      1150
+     ]
+    },
+    {
+     "w": 53,
+     "frame": [
+      640,
+      1450,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 41,
+     "who": "fast",
+     "y": 1820,
+     "dur": 0.9,
+     "pose": "run"
+    },
+    {
+     "w": 41,
+     "who": "fast",
+     "scale": 0.6,
+     "sdur": 0.9
+    },
+    {
+     "w": 44,
+     "who": "cal8",
+     "x": 720,
+     "dur": 0.05
+    },
+    {
+     "w": 50,
+     "who": "cal8",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 50,
+     "who": "fast",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 50,
+     "who": "slow",
+     "x": 330,
+     "dur": 0.05
+    },
+    {
+     "w": 51,
+     "who": "slow",
+     "x": 470,
+     "dur": 3.0
+    },
+    {
+     "w": 53,
+     "who": "calY",
+     "x": 720,
+     "dur": 0.05
+    }
+   ]
+  },
+  {
+   "id": "pyramids",
+   "start_word": 56,
+   "set": "desert_rails",
+   "mood": "golden",
+   "cast": [
+    {
+     "id": "sun",
+     "type": "sun",
+     "x": 820,
+     "y": 420,
+     "scale": 0.45,
+     "z": 1.0,
+     "expr": "old"
+    },
+    {
+     "id": "p1",
+     "type": "pyramid",
+     "x": 260,
+     "y": 1300,
+     "scale": 0.55,
+     "z": 1.0
+    },
+    {
+     "id": "p2",
+     "type": "pyramid",
+     "x": 800,
+     "y": 1310,
+     "scale": 0.4,
+     "z": 1.0,
+     "torso": "#e0b46a"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1830,
+     "scale": 1.15,
+     "z": 0.98,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "happy",
+     "look": [
+      0.3,
+      -1
+     ]
+    }
+   ],
+   "keys": [
+    {
+     "w": 56,
+     "frame": [
+      540,
+      1350,
+      1400
+     ]
+    },
+    {
+     "w": 59,
+     "frame": "you:face"
+    },
+    {
+     "w": 64,
+     "frame": [
+      520,
+      1150,
+      1100
+     ]
+    },
+    {
+     "w": 67,
+     "frame": [
+      300,
+      1180,
+      900
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 64,
+     "who": "you",
+     "expr": "shocked"
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "start_word": 70,
+   "set": "field",
+   "mood": "sunset",
+   "cast": [
+    {
+     "id": "btn",
+     "type": "subbutton",
+     "x": 920,
+     "y": 1960,
+     "scale": 0.75,
+     "z": 0.9
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 180,
+     "y": 1960,
+     "scale": 1.15,
+     "z": 0.9,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "happy"
+    }
+   ],
+   "keys": [
+    {
+     "w": 70,
+     "frame": [
+      560,
+      1550,
+      1500
+     ]
+    },
+    {
+     "w": 72,
+     "frame": [
+      820,
+      1720,
+      950
+     ]
+    },
+    {
+     "w": 77,
+     "frame": [
+      600,
+      1580,
+      1300
+     ]
+    },
+    {
+     "w": 81,
+     "frame": [
+      540,
+      1560,
+      1250
+     ]
+    },
+    {
+     "w": 84,
+     "frame": [
+      540,
+      1580,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 74,
+     "who": "btn",
+     "x": 680,
+     "dur": 3.5
+    },
+    {
+     "w": 81,
+     "who": "you",
+     "x": 390,
+     "dur": 0.8
+    },
+    {
+     "w": 84,
+     "who": "you",
+     "pose": "point",
+     "expr": "laughing"
+    }
+   ]
+  }
+ ]
+}
