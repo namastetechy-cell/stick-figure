@@ -818,3 +818,68 @@ def draw_subbutton(cv, x, y, s, t, mood, st):
 DRAW.update({'photon': draw_photon, 'sun': draw_sun, 'mirror': draw_mirror, 'mirror_frame': draw_mirror_frame,
              'pyramid': draw_pyramid, 'subbutton': draw_subbutton})
 SHADOW.update({'photon': 110, 'sun': 0, 'mirror': 220, 'mirror_frame': 0, 'pyramid': 0, 'subbutton': 150})
+
+
+# ----------------------------------------------------------------------------- bed: back (headboard + mattress) and front (blanket)
+def draw_bed_back(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    hb = path_smooth([(-330, -230), (-330, -560), (-180, -620), (180, -620), (330, -560), (330, -230)], tension=0.15)
+    cv.drawPath(hb, fill(g('#8a5a3a'))); cv.drawPath(hb, ink(W))
+    for k in (-160, 0, 160):
+        cv.drawPath(rrect(k - 50, -560, 100, 280, 30), fill(g('#6a422a'))); cv.drawPath(rrect(k - 50, -560, 100, 280, 30), ink(4, 0.6))
+    pil = path_smooth([(-260, -330), (-250, -420), (-40, -430), (-30, -330)], tension=0.3)
+    cv.drawPath(pil, fill(g('#f4f0f6'))); cv.drawPath(pil, ink(5))
+    mat = rrect(-330, -300, 660, 120, 30)
+    cv.drawPath(mat, fill(g('#e8e4ee'))); cv.drawPath(mat, ink(W))
+    cv.restore()
+
+
+def draw_bed_front(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    col = st.get('torso', '#5a7ac8')
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    for sx in (-1, 1):
+        cv.drawPath(rrect(sx * 330 - 22, -120, 44, 120, 8), fill(g('#6a422a'))); cv.drawPath(rrect(sx * 330 - 22, -120, 44, 120, 8), ink(5))
+    bl = path_smooth([(-360, -300), (-120, -330), (200, -320), (360, -290), (370, -110), (0, -90), (-370, -110)], tension=0.25)
+    cv.drawPath(bl, fill(g(col)))
+    cv.save(); cv.clipPath(bl, doAntiAlias=True)
+    for k in range(-4, 5):
+        cv.drawLine(k * 90, -340, k * 90 + 40, -80, stroke_c(shade(g(col), 0.2), 18))
+    cv.drawPath(ellipse(150, -120, 300, 90), fill(g('#3a2a5a'), 0.2))
+    cv.restore()
+    cv.drawPath(bl, ink(W))
+    cv.drawPath(rrect(-360, -330, 720, 60, 26), fill(g('#f4f0f6'))); cv.drawPath(rrect(-360, -330, 720, 60, 26), ink(5))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- upright piano (~520 tall, 700 wide)
+def draw_piano(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    body = rrect(-350, -520, 700, 520, 24)
+    cv.drawPath(body, fill(g('#3a2430'))); cv.drawPath(body, ink(W))
+    cv.drawPath(rrect(-320, -490, 640, 180, 14), fill(g('#4a3040'))); cv.drawPath(rrect(-320, -490, 640, 180, 14), ink(4, 0.6))
+    cv.drawPath(rrect(-380, -300, 760, 60, 10), fill(g('#4a3040'))); cv.drawPath(rrect(-380, -300, 760, 60, 10), ink(5))
+    keys = rrect(-360, -250, 720, 60, 6)
+    cv.drawPath(keys, fill(g('#f8f4ee'))); cv.drawPath(keys, ink(5))
+    for k in range(1, 24):
+        kx = -360 + k * 30
+        cv.drawLine(kx, -250, kx, -190, ink(2.5, 0.7))
+        if k % 7 not in (0, 3):
+            cv.drawPath(rrect(kx - 9, -250, 18, 36, 3), fill(INK))
+    for sx in (-1, 1):
+        cv.drawPath(rrect(sx * 330 - 20, -190, 40, 190, 8), fill(g('#3a2430'))); cv.drawPath(rrect(sx * 330 - 20, -190, 40, 190, 8), ink(5))
+    if st.get('expr') == 'play':                                    # floating notes
+        for k in range(4):
+            ph = (t * 0.7 + k / 4) % 1.0
+            nx, ny = -150 + k * 90 + 30 * math.sin(ph * 6), -560 - ph * 320
+            a = math.sin(ph * math.pi)
+            cv.drawPath(ellipse(nx, ny, 22, 17), fill(INK, a))
+            cv.drawLine(nx + 20, ny, nx + 20, ny - 80, ink(6, a))
+            cv.drawLine(nx + 20, ny - 80, nx + 50, ny - 60, ink(6, a))
+    cv.restore()
+
+
+DRAW.update({'bed_back': draw_bed_back, 'bed_front': draw_bed_front, 'piano': draw_piano})
+SHADOW.update({'bed_back': 0, 'bed_front': 340, 'piano': 360})
