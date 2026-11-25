@@ -883,3 +883,88 @@ def draw_piano(cv, x, y, s, t, mood, st):
 
 DRAW.update({'bed_back': draw_bed_back, 'bed_front': draw_bed_front, 'piano': draw_piano})
 SHADOW.update({'bed_back': 0, 'bed_front': 340, 'piano': 360})
+
+
+# ----------------------------------------------------------------------------- big glowing pause button (~400 wide)
+def draw_pausebtn(cv, x, y, s, t, mood, st):
+    expr = st.get('expr', 'on')
+    pulse = 1 + 0.04 * math.sin(t * 6)
+    cv.save(); cv.translate(x, y - 200 * s); cv.scale(s * pulse, s * pulse)
+    col = '#e8404a' if expr == 'stuck' else '#4ab0ff'
+    glow = fill('#ffffff'); glow.setShader(rad_grad((0, 0), 330, [C4(col, 0.6), C4(col, 0.0)]))
+    cv.drawCircle(0, 0, 330, glow)
+    cv.drawCircle(0, 0, 200, fill(col)); cv.drawCircle(0, 0, 200, ink(W * 1.3))
+    cv.drawCircle(0, 0, 165, stroke_c('#ffffff', 8))
+    for sx in (-1, 1):
+        b = rrect(sx * 55 - 28, -90, 56, 180, 16)
+        cv.drawPath(b, fill('#ffffff')); cv.drawPath(b, ink(5))
+    if expr == 'stuck':                                            # cracked, won't unpress
+        cr = skia.Path(); cr.moveTo(-150, -110); cr.lineTo(-60, -30); cr.lineTo(-90, 20); cr.lineTo(20, 90); cr.lineTo(10, 150)
+        cv.drawPath(cr, ink(7))
+    cv.restore()
+
+
+def C4(c, a):
+    from .paint import C
+    return C(c, a).toColor()
+
+
+# ----------------------------------------------------------------------------- blackout: dark everywhere, optional spotlight hole
+def draw_blackout(cv, x, y, s, t, mood, st):
+    if st.get('expr', 'on') == 'off':
+        return
+    a = st.get('alpha', 0.95)
+    col = st.get('torso', '#07050c')
+    sr = st.get('sr', 0)
+    cv.save(); cv.translate(x, y)
+    if sr <= 0:
+        cv.drawRect(skia.Rect.MakeLTRB(-9000, -9000, 9000, 9000), fill(col, a))
+    else:
+        sx, sy = st.get('sx', 0), st.get('sy', 0)
+        p = fill('#000000')
+        p.setShader(rad_grad((sx, sy), sr * 1.25, [C4(col, 0.0), C4(col, 0.0), C4(col, a)], [0, 0.72, 1.0]))
+        cv.drawRect(skia.Rect.MakeLTRB(-9000, -9000, 9000, 9000), p)
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- sound waves: flowing arcs, or frozen icy arcs
+def draw_soundwave(cv, x, y, s, t, mood, st):
+    frozen = st.get('expr') == 'frozen'
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    for k in range(4):
+        ph = 0.15 + k * 0.22 if frozen else (t * 1.4 + k / 4) % 1.0
+        r = 40 + ph * 300
+        a = 1.0 if frozen else math.sin(ph * math.pi)
+        arc = skia.Path(); arc.addArc(skia.Rect.MakeLTRB(-r, -r, r, r), -40, 80)
+        if frozen:
+            cv.drawPath(arc, stroke_c('#d8f4ff', 22)); cv.drawPath(arc, ink(5, 0.8))
+            for j in range(3):                                     # little icicles hanging off each frozen ring
+                aa = math.radians(-25 + j * 25)
+                ix, iy = math.cos(aa) * r, math.sin(aa) * r
+                ic = path_smooth([(ix - 8, iy), (ix + 8, iy), (ix, iy + 34)], tension=0.05)
+                cv.drawPath(ic, fill('#d8f4ff')); cv.drawPath(ic, ink(3))
+        else:
+            cv.drawPath(arc, stroke_c('#ffffff', 14 * a + 2)); cv.drawPath(arc, ink(4, a))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- breath: flowing puffs, or frozen cubes of air
+def draw_breath(cv, x, y, s, t, mood, st):
+    frozen = st.get('expr') == 'frozen'
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    for k in range(6):
+        ph = 0.12 + k * 0.15 if frozen else (t * 0.9 + k / 6) % 1.0
+        px, py = 30 + ph * 300, -20 * math.sin(ph * 5 + k) - ph * 60
+        r = 26 + ph * 40
+        if frozen:
+            cube = rrect(px - r, py - r, 2 * r, 2 * r, 10)
+            cv.drawPath(cube, fill('#cfeeff', 0.85)); cv.drawPath(cube, ink(4))
+            cv.drawLine(px - r * 0.6, py - r * 0.5, px - r * 0.1, py - r * 0.5, stroke_c('#ffffff', 5))
+        else:
+            a = math.sin(ph * math.pi) * 0.8
+            cv.drawPath(ellipse(px, py, r, r * 0.8), fill('#ffffff', a)); cv.drawPath(ellipse(px, py, r, r * 0.8), ink(3.5, a))
+    cv.restore()
+
+
+DRAW.update({'pausebtn': draw_pausebtn, 'blackout': draw_blackout, 'soundwave': draw_soundwave, 'breath': draw_breath})
+SHADOW.update({'pausebtn': 0, 'blackout': 0, 'soundwave': 0, 'breath': 0})

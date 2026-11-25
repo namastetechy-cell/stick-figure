@@ -1,0 +1,809 @@
+{
+ "title": "What if you paused time and could never unpause",
+ "fps": 30,
+ "end_pad": 0.8,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "exam",
+   "start_word": 0,
+   "set": "office",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "teach",
+     "type": "scientist",
+     "x": 240,
+     "y": 1300,
+     "scale": 1.0,
+     "z": 1.2,
+     "face": 0.3,
+     "pose": "hold",
+     "expr": "smug",
+     "hold": "newspaper:FINAL EXAM|TODAY 9AM"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 690,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 0.95,
+     "face": -0.3,
+     "dir": -1,
+     "pose": "stand",
+     "expr": "scared"
+    },
+    {
+     "id": "pause",
+     "type": "pausebtn",
+     "x": -3000,
+     "y": 1230,
+     "scale": 0.7,
+     "z": 0.94
+    },
+    {
+     "id": "tint",
+     "type": "blackout",
+     "x": 540,
+     "y": 960,
+     "scale": 1,
+     "z": 0.9,
+     "expr": "off",
+     "torso": "#3a7ad8",
+     "alpha": 0.16
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": "you:face"
+    },
+    {
+     "w": 3,
+     "frame": [
+      600,
+      1200,
+      1400
+     ]
+    },
+    {
+     "w": 6,
+     "frame": [
+      300,
+      1050,
+      1000
+     ]
+    },
+    {
+     "w": 9,
+     "frame": [
+      740,
+      1150,
+      1050
+     ]
+    },
+    {
+     "w": 14,
+     "frame": [
+      740,
+      1250,
+      1150
+     ]
+    },
+    {
+     "w": 18,
+     "frame": [
+      540,
+      1150,
+      1600
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 3,
+     "who": "pause",
+     "x": 760,
+     "dur": 0.05
+    },
+    {
+     "w": 3,
+     "who": "tint",
+     "expr": "on"
+    },
+    {
+     "w": 4,
+     "who": "you",
+     "pose": "point",
+     "dir": 1,
+     "face": 0.2,
+     "expr": "smug"
+    },
+    {
+     "w": 10,
+     "who": "pause",
+     "expr": "stuck"
+    },
+    {
+     "w": 10,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "shocked"
+    },
+    {
+     "w": 14,
+     "who": "you",
+     "pose": "cheer",
+     "expr": "laughing"
+    },
+    {
+     "w": 18,
+     "who": "you",
+     "pose": "stand",
+     "expr": "scared"
+    }
+   ]
+  },
+  {
+   "id": "dark",
+   "start_word": 22,
+   "set": "street",
+   "mood": "golden",
+   "cast": [
+    {
+     "id": "sun",
+     "type": "sun",
+     "x": 820,
+     "y": 380,
+     "scale": 0.45,
+     "z": 1.0,
+     "expr": "happy"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 300,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "neutral",
+     "look": [
+      0.6,
+      -0.4
+     ]
+    },
+    {
+     "id": "ph",
+     "type": "photon",
+     "x": 820,
+     "y": 1250,
+     "scale": 0.45,
+     "z": 0.97,
+     "dir": -1
+    },
+    {
+     "id": "blk",
+     "type": "blackout",
+     "x": 540,
+     "y": 960,
+     "scale": 1,
+     "z": 0.9,
+     "expr": "off",
+     "alpha": 0.95
+    }
+   ],
+   "keys": [
+    {
+     "w": 22,
+     "frame": [
+      540,
+      1250,
+      1700
+     ]
+    },
+    {
+     "w": 26,
+     "frame": [
+      600,
+      1000,
+      1400
+     ]
+    },
+    {
+     "w": 30,
+     "frame": [
+      480,
+      1250,
+      1050
+     ]
+    },
+    {
+     "w": 34,
+     "frame": [
+      560,
+      1200,
+      950
+     ]
+    },
+    {
+     "w": 38,
+     "frame": [
+      440,
+      1300,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 24,
+     "who": "blk",
+     "expr": "on"
+    },
+    {
+     "w": 24,
+     "who": "you",
+     "expr": "scared"
+    },
+    {
+     "w": 26,
+     "who": "blk",
+     "expr": "off"
+    },
+    {
+     "w": 26,
+     "who": "you",
+     "expr": "happy"
+    },
+    {
+     "w": 27,
+     "who": "ph",
+     "x": 520,
+     "dur": 2.0
+    },
+    {
+     "w": 34,
+     "who": "ph",
+     "expr": "tired"
+    },
+    {
+     "w": 34,
+     "who": "you",
+     "expr": "shocked"
+    },
+    {
+     "w": 39,
+     "who": "blk",
+     "expr": "on"
+    }
+   ]
+  },
+  {
+   "id": "silence",
+   "start_word": 41,
+   "set": "street",
+   "mood": "night",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 300,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "think",
+     "expr": "neutral"
+    },
+    {
+     "id": "pal",
+     "type": "cashier",
+     "x": 790,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "point",
+     "expr": "happy"
+    },
+    {
+     "id": "sw",
+     "type": "soundwave",
+     "x": 710,
+     "y": 1380,
+     "scale": 1.0,
+     "z": 0.98,
+     "dir": -1,
+     "expr": "frozen"
+    }
+   ],
+   "keys": [
+    {
+     "w": 41,
+     "frame": [
+      540,
+      1300,
+      1300
+     ]
+    },
+    {
+     "w": 43,
+     "frame": [
+      620,
+      1350,
+      950
+     ]
+    },
+    {
+     "w": 47,
+     "frame": [
+      560,
+      1300,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 41,
+     "who": "you",
+     "expr": "scared"
+    },
+    {
+     "w": 43,
+     "who": "sw",
+     "expr": "flow"
+    },
+    {
+     "w": 43,
+     "who": "pal",
+     "talk": true
+    },
+    {
+     "w": 43,
+     "who": "you",
+     "expr": "happy"
+    },
+    {
+     "w": 47,
+     "who": "sw",
+     "expr": "frozen"
+    },
+    {
+     "w": 47,
+     "who": "pal",
+     "talk": false,
+     "expr": "shocked"
+    },
+    {
+     "w": 47,
+     "who": "you",
+     "expr": "shocked"
+    }
+   ]
+  },
+  {
+   "id": "breath",
+   "start_word": 50,
+   "set": "kitchen",
+   "mood": "night",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 500,
+     "y": 1740,
+     "scale": 1.2,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "id": "br",
+     "type": "breath",
+     "x": 560,
+     "y": 1340,
+     "scale": 1.0,
+     "z": 0.98,
+     "expr": "flow"
+    },
+    {
+     "id": "ice",
+     "type": "ice",
+     "x": -3000,
+     "y": 1560,
+     "scale": 0.9,
+     "z": 0.97
+    }
+   ],
+   "keys": [
+    {
+     "w": 50,
+     "frame": [
+      540,
+      1250,
+      1350
+     ]
+    },
+    {
+     "w": 55,
+     "frame": [
+      620,
+      1250,
+      950
+     ]
+    },
+    {
+     "w": 62,
+     "frame": [
+      580,
+      1250,
+      1100
+     ]
+    },
+    {
+     "w": 66,
+     "frame": [
+      650,
+      1300,
+      950
+     ]
+    },
+    {
+     "w": 69,
+     "frame": [
+      600,
+      1300,
+      1050
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 53,
+     "who": "you",
+     "expr": "sly"
+    },
+    {
+     "w": 55,
+     "who": "you",
+     "expr": "happy"
+    },
+    {
+     "w": 66,
+     "who": "br",
+     "expr": "frozen"
+    },
+    {
+     "w": 66,
+     "who": "ice",
+     "x": 760,
+     "dur": 0.05
+    },
+    {
+     "w": 66,
+     "who": "you",
+     "expr": "shocked",
+     "skin": "#c4dcf0"
+    },
+    {
+     "w": 69,
+     "who": "you",
+     "expr": "scared",
+     "pose": "shrug"
+    }
+   ]
+  },
+  {
+   "id": "stuck",
+   "start_word": 73,
+   "set": "office",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "teach",
+     "type": "scientist",
+     "x": 330,
+     "y": 1300,
+     "scale": 1.0,
+     "z": 1.2,
+     "face": 0.3,
+     "pose": "hold",
+     "expr": "smug",
+     "hold": "newspaper:FINAL EXAM|TODAY 9AM"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 660,
+     "y": 1740,
+     "scale": 1.1,
+     "z": 0.95,
+     "face": 0.2,
+     "pose": "hold",
+     "expr": "smug",
+     "hold": "newspaper:EXAM|SKIPPED!"
+    },
+    {
+     "id": "blk",
+     "type": "blackout",
+     "x": 660,
+     "y": 1740,
+     "scale": 1,
+     "z": 0.9,
+     "expr": "off",
+     "alpha": 0.96,
+     "sx": 0,
+     "sy": -400,
+     "sr": 300
+    }
+   ],
+   "keys": [
+    {
+     "w": 73,
+     "frame": [
+      560,
+      1300,
+      1450
+     ]
+    },
+    {
+     "w": 78,
+     "frame": [
+      660,
+      1300,
+      1150
+     ]
+    },
+    {
+     "w": 81,
+     "frame": [
+      660,
+      1320,
+      1150
+     ]
+    },
+    {
+     "w": 86,
+     "frame": "you:face"
+    }
+   ],
+   "acts": [
+    {
+     "w": 78,
+     "who": "you",
+     "pose": "cheer",
+     "hold": null,
+     "expr": "laughing"
+    },
+    {
+     "w": 79,
+     "who": "blk",
+     "expr": "on"
+    },
+    {
+     "w": 79,
+     "who": "you",
+     "pose": "stand",
+     "expr": "scared",
+     "skin": "#c8b4e6"
+    },
+    {
+     "w": 86,
+     "who": "you",
+     "expr": "shocked"
+    }
+   ]
+  },
+  {
+   "id": "monday",
+   "start_word": 89,
+   "set": "kitchen",
+   "mood": "dawn",
+   "cast": [
+    {
+     "id": "cal",
+     "type": "calendar",
+     "x": 820,
+     "y": 1250,
+     "scale": 0.75,
+     "z": 1.0,
+     "label": "MONDAY",
+     "d0": 8,
+     "d1": 8,
+     "t0": 0,
+     "t1": 1,
+     "shadow": false
+    },
+    {
+     "id": "pal",
+     "type": "worker",
+     "x": 360,
+     "y": 1720,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "tired"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 1350,
+     "y": 1730,
+     "scale": 1.05,
+     "z": 0.99,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "hold",
+     "expr": "happy",
+     "hold": "sign:SEND THIS"
+    }
+   ],
+   "keys": [
+    {
+     "w": 89,
+     "frame": [
+      560,
+      1250,
+      1500
+     ]
+    },
+    {
+     "w": 93,
+     "frame": [
+      380,
+      1250,
+      950
+     ]
+    },
+    {
+     "w": 99,
+     "frame": [
+      820,
+      1050,
+      820
+     ]
+    },
+    {
+     "w": 102,
+     "frame": [
+      600,
+      1300,
+      1400
+     ]
+    },
+    {
+     "w": 105,
+     "frame": [
+      480,
+      1250,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 93,
+     "who": "pal",
+     "talk": true,
+     "pose": "shrug"
+    },
+    {
+     "w": 101,
+     "who": "pal",
+     "talk": false,
+     "pose": "stand"
+    },
+    {
+     "w": 102,
+     "who": "you",
+     "x": 800,
+     "dur": 0.6
+    },
+    {
+     "w": 105,
+     "who": "pal",
+     "expr": "shocked"
+    },
+    {
+     "w": 108,
+     "who": "pal",
+     "expr": "happy"
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "start_word": 111,
+   "set": "street",
+   "mood": "night",
+   "cast": [
+    {
+     "id": "btn",
+     "type": "subbutton",
+     "x": 640,
+     "y": 1760,
+     "scale": 0.8,
+     "z": 0.98
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 300,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "happy"
+    },
+    {
+     "id": "blk",
+     "type": "blackout",
+     "x": 480,
+     "y": 1740,
+     "scale": 1,
+     "z": 0.9,
+     "expr": "on",
+     "alpha": 0.95,
+     "sx": 0,
+     "sy": -280,
+     "sr": 430
+    }
+   ],
+   "keys": [
+    {
+     "w": 111,
+     "frame": [
+      490,
+      1450,
+      1300
+     ]
+    },
+    {
+     "w": 114,
+     "frame": [
+      660,
+      1560,
+      950
+     ]
+    },
+    {
+     "w": 120,
+     "frame": [
+      480,
+      1460,
+      1250
+     ]
+    },
+    {
+     "w": 123,
+     "frame": [
+      490,
+      1480,
+      1250
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 114,
+     "who": "you",
+     "expr": "deadpan"
+    },
+    {
+     "w": 123,
+     "who": "you",
+     "pose": "point",
+     "expr": "laughing"
+    }
+   ]
+  }
+ ]
+}
