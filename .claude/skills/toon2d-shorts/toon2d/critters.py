@@ -1042,3 +1042,125 @@ def draw_dust(cv, x, y, s, t, mood, st):
 
 DRAW.update({'ufo': draw_ufo, 'coin': draw_coin, 'dust': draw_dust})
 SHADOW.update({'ufo': 0, 'coin': 0, 'dust': 0})
+
+
+# ----------------------------------------------------------------------------- lightning bolt from (x, y) to (x+dx, y+dy); flickers
+def draw_bolt(cv, x, y, s, t, mood, st):
+    if st.get('expr', 'on') == 'off':
+        return
+    dx, dy = st.get('dx', 0), st.get('dy', 1200)
+    rate = st.get('rate', 7.0)
+    ph = int(t * rate)
+    if (t * rate) % 1.0 > 0.75:
+        return                                                     # flicker gap
+    import random as _r
+    rnd = _r.Random(ph * 31 + (hash(st.get('id', '')) % 97))
+    n = 9
+    pts = [(x, y)]
+    L = math.hypot(dx, dy) or 1
+    nx, ny = -dy / L, dx / L
+    for k in range(1, n):
+        u = k / n
+        j = rnd.uniform(-1, 1) * L * 0.07
+        pts.append((x + dx * u + nx * j, y + dy * u + ny * j))
+    pts.append((x + dx, y + dy))
+    p = skia.Path(); p.moveTo(*pts[0])
+    for q in pts[1:]:
+        p.lineTo(*q)
+    w = 26 * s
+    glow = stroke_c('#9ad8ff', w * 3.2); blurred(glow, 22 * s); glow.setAlphaf(0.75)
+    cv.drawPath(p, glow)
+    cv.drawPath(p, stroke_c('#e8f6ff', w))
+    cv.drawPath(p, stroke_c('#ffffff', w * 0.45))
+    for k in (3, 6):                                               # a couple of forks
+        fx, fy = pts[k]
+        q = skia.Path(); q.moveTo(fx, fy)
+        q.lineTo(fx + nx * L * 0.12 + dx * 0.06, fy + ny * L * 0.12 + dy * 0.06)
+        q.lineTo(fx + nx * L * 0.16 + dx * 0.12, fy + ny * L * 0.16 + dy * 0.12)
+        cv.drawPath(q, stroke_c('#e8f6ff', w * 0.5))
+
+
+# ----------------------------------------------------------------------------- empty stone pedestal (~420 tall)
+def draw_pedestal(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    base = rrect(-200, -80, 400, 80, 10); col = rrect(-140, -330, 280, 260, 8); top = rrect(-210, -400, 420, 80, 12)
+    for p, c in ((base, '#8a8aa0'), (col, '#a0a0b4'), (top, '#b4b4c8')):
+        cv.drawPath(p, fill(g(c))); cv.drawPath(p, ink(W))
+    for k in range(3):
+        cv.drawLine(-140 + 70 * (k + 1), -320, -140 + 70 * (k + 1), -80, ink(3, 0.4))
+    cv.drawLine(-120, -400, -60, -360, ink(4, 0.7)); cv.drawLine(-60, -360, -80, -330, ink(4, 0.7))   # crack
+    cv.drawPath(ellipse(0, -410, 150, 22), fill('#3a2a4a', 0.35))  # dusty outline where something used to be
+    _txt(cv, '?', 0, -470 + 10 * math.sin(t * 3), 150, '#f2c640')
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- city bus (side view, ~1100 long, 520 tall)
+def draw_bus(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s * st.get('dir', 1), s)
+    body = rrect(-550, -520, 1100, 440, 50)
+    cv.drawPath(body, fill(g('#f2b632'))); cv.drawPath(body, ink(W))
+    cv.drawPath(rrect(-550, -200, 1100, 50, 0), fill(g('#d8343c')))
+    for k in range(5):
+        wx = -470 + k * 190
+        cv.drawPath(rrect(wx, -470, 150, 150, 18), fill(g('#a8d8f0'))); cv.drawPath(rrect(wx, -470, 150, 150, 18), ink(5))
+    cv.drawPath(rrect(400, -470, 110, 360, 12), fill(g('#a8d8f0'))); cv.drawPath(rrect(400, -470, 110, 360, 12), ink(5))
+    cv.drawPath(rrect(-550, -560, 260, 50, 12), fill(g('#2a2232'))); _txt(cv, 'BUS 42', -420, -522, 34, '#f2c640')
+    for wx in (-330, 330):
+        cv.drawCircle(wx, -80, 78, fill(INK)); cv.drawCircle(wx, -80, 34, fill(g('#b8b8c8')))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- laptop (~300 wide); expr 'fried' = dead screen
+def draw_laptop(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    fried = st.get('expr') == 'fried'
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    cv.drawPath(rrect(-170, -24, 340, 24, 6), fill(g('#9aa4b8'))); cv.drawPath(rrect(-170, -24, 340, 24, 6), ink(5))
+    scr = rrect(-140, -230, 280, 200, 14)
+    cv.drawPath(scr, fill(g('#3a3e4a'))); cv.drawPath(scr, ink(W))
+    inner = rrect(-122, -212, 244, 164, 8)
+    if fried:
+        cv.drawPath(inner, fill('#121018'))
+        cv.drawLine(-100, -200, 40, -110, stroke_c('#ffffff', 4)); cv.drawLine(40, -110, 0, -60, stroke_c('#ffffff', 4))
+    else:
+        p = fill('#ffffff'); p.setShader(lin_grad((0, -212), (0, -48), ['#6ac8f0', '#7a7ae8'])); cv.drawPath(inner, p)
+        for k in range(3):
+            cv.drawLine(-90, -180 + k * 36, 60 - k * 30, -180 + k * 36, stroke_c('#ffffff', 10))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- Wi-Fi sign; expr 'gone' = crossed out
+def draw_wifi(cv, x, y, s, t, mood, st):
+    gone = st.get('expr') == 'gone'
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    cv.drawCircle(0, -150, 170, fill('#ffffff', 0.9)); cv.drawCircle(0, -150, 170, ink(W))
+    col = '#9a9aa8' if gone else '#3a8ad8'
+    for k, r in enumerate((40, 80, 120)):
+        arc = skia.Path(); arc.addArc(skia.Rect.MakeLTRB(-r, -90 - r, r, -90 + r), 225, 90)
+        cv.drawPath(arc, stroke_c(col, 22))
+    cv.drawCircle(0, -100, 18, fill(col))
+    if gone:
+        cv.drawLine(-120, -270, 120, -30, stroke_c('#d8343c', 26)); cv.drawLine(-120, -270, 120, -30, ink(4))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- smoke + sparks rising (fried electronics)
+def draw_smoke(cv, x, y, s, t, mood, st):
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    for k in range(6):
+        ph = (t * 0.6 + k / 6) % 1.0
+        px, py = 30 * math.sin(ph * 5 + k), -ph * 320
+        r = 30 + ph * 60
+        a = math.sin(ph * math.pi) * 0.75
+        cv.drawPath(ellipse(px, py, r, r * 0.85), fill('#a8a2b8', a)); cv.drawPath(ellipse(px, py, r, r * 0.85), ink(3, a * 0.6))
+    for k in range(5):
+        ph = (t * 1.7 + k / 5) % 1.0
+        sx, sy = (k - 2) * 40 * ph * 2, -ph * 160
+        cv.drawCircle(sx, sy, 7 * (1 - ph) + 2, fill('#ffd84a', 1 - ph))
+    cv.restore()
+
+
+DRAW.update({'bolt': draw_bolt, 'pedestal': draw_pedestal, 'bus': draw_bus, 'laptop': draw_laptop, 'wifi': draw_wifi, 'smoke': draw_smoke})
+SHADOW.update({'bolt': 0, 'pedestal': 220, 'bus': 560, 'laptop': 170, 'wifi': 0, 'smoke': 0})

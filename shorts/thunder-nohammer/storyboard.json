@@ -1,0 +1,842 @@
+{
+ "title": "What if you were the god of thunder without the hammer",
+ "fps": 30,
+ "end_pad": 0.8,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "hook",
+   "start_word": 0,
+   "set": "castle_hall",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "ped",
+     "type": "pedestal",
+     "x": 420,
+     "y": 1700,
+     "scale": 0.9,
+     "z": 0.97
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 800,
+     "y": 1700,
+     "scale": 1.1,
+     "z": 0.98,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "stand",
+     "expr": "neutral",
+     "hair": "messy_black",
+     "beard": "#8a5a3a",
+     "torso": "#4a4e62",
+     "scarf": "#3a6ad8"
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": [
+      420,
+      1360,
+      820
+     ]
+    },
+    {
+     "w": 4,
+     "frame": [
+      600,
+      1300,
+      1450
+     ]
+    },
+    {
+     "w": 9,
+     "frame": "you"
+    },
+    {
+     "w": 15,
+     "frame": [
+      600,
+      1300,
+      1350
+     ]
+    },
+    {
+     "w": 25,
+     "frame": [
+      760,
+      1250,
+      1050
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 6,
+     "who": "you",
+     "expr": "shocked"
+    },
+    {
+     "w": 9,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "sad"
+    },
+    {
+     "w": 19,
+     "who": "you",
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "w": 25,
+     "who": "you",
+     "pose": "think",
+     "expr": "sly"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "start_word": 28,
+   "set": "desert_rails",
+   "mood": "night",
+   "bloom": 0.8,
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1800,
+     "scale": 1.15,
+     "z": 0.97,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "smug",
+     "hair": "messy_black",
+     "beard": "#8a5a3a",
+     "torso": "#4a4e62",
+     "scarf": "#3a6ad8"
+    },
+    {
+     "id": "bolt",
+     "type": "bolt",
+     "x": 570,
+     "y": -200,
+     "scale": 1.0,
+     "z": 0.96,
+     "dx": -30,
+     "dy": 1430,
+     "expr": "off"
+    },
+    {
+     "id": "flash",
+     "type": "blackout",
+     "x": 540,
+     "y": 960,
+     "scale": 1,
+     "z": 0.9,
+     "expr": "off",
+     "torso": "#ffffff",
+     "alpha": 0.35
+    }
+   ],
+   "keys": [
+    {
+     "w": 28,
+     "frame": [
+      540,
+      1350,
+      1200
+     ]
+    },
+    {
+     "w": 31,
+     "frame": [
+      540,
+      1300,
+      1350
+     ]
+    },
+    {
+     "w": 38,
+     "frame": [
+      540,
+      1000,
+      1650
+     ]
+    },
+    {
+     "w": 44,
+     "frame": [
+      540,
+      1350,
+      1050
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 28,
+     "who": "you",
+     "pose": "point",
+     "expr": "smug"
+    },
+    {
+     "w": 37,
+     "who": "you",
+     "pose": "cheer",
+     "expr": "angry"
+    },
+    {
+     "w": 38,
+     "who": "bolt",
+     "expr": "on"
+    },
+    {
+     "w": 38,
+     "who": "flash",
+     "expr": "on"
+    },
+    {
+     "w": 40,
+     "who": "flash",
+     "expr": "off"
+    },
+    {
+     "w": 44,
+     "who": "you",
+     "expr": "laughing"
+    },
+    {
+     "w": 47,
+     "who": "flash",
+     "expr": "on"
+    },
+    {
+     "w": 48,
+     "who": "flash",
+     "expr": "off"
+    }
+   ]
+  },
+  {
+   "id": "sun",
+   "start_word": 49,
+   "set": "desert_rails",
+   "mood": "golden",
+   "cast": [
+    {
+     "id": "sun",
+     "type": "sun",
+     "x": 280,
+     "y": 560,
+     "scale": 0.6,
+     "z": 1.0,
+     "expr": "happy"
+    },
+    {
+     "id": "bolt",
+     "type": "bolt",
+     "x": 800,
+     "y": 120,
+     "scale": 0.9,
+     "z": 0.99,
+     "dx": 40,
+     "dy": 1150,
+     "rate": 5.0
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1820,
+     "scale": 1.1,
+     "z": 0.97,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "neutral",
+     "hair": "messy_black",
+     "beard": "#8a5a3a",
+     "torso": "#4a4e62",
+     "scarf": "#3a6ad8"
+    }
+   ],
+   "keys": [
+    {
+     "w": 49,
+     "frame": [
+      540,
+      950,
+      1600
+     ]
+    },
+    {
+     "w": 53,
+     "frame": [
+      800,
+      800,
+      1100
+     ]
+    },
+    {
+     "w": 58,
+     "frame": [
+      540,
+      1350,
+      1150
+     ]
+    },
+    {
+     "w": 63,
+     "frame": [
+      280,
+      700,
+      1000
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 58,
+     "who": "you",
+     "pose": "hold",
+     "hold": "sign:5x HOTTER",
+     "expr": "shocked"
+    },
+    {
+     "w": 64,
+     "who": "sun",
+     "expr": "old"
+    }
+   ]
+  },
+  {
+   "id": "bus",
+   "start_word": 67,
+   "set": "street",
+   "mood": "day",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 300,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": 0.3,
+     "pose": "stand",
+     "expr": "neutral",
+     "hair": "messy_black",
+     "beard": "#8a5a3a",
+     "torso": "#4a4e62",
+     "scarf": "#3a6ad8"
+    },
+    {
+     "id": "bus",
+     "type": "bus",
+     "x": 1900,
+     "y": 1780,
+     "scale": 0.75,
+     "z": 0.98,
+     "dir": -1
+    }
+   ],
+   "keys": [
+    {
+     "w": 67,
+     "frame": [
+      480,
+      1350,
+      1350
+     ]
+    },
+    {
+     "w": 70,
+     "frame": [
+      420,
+      1250,
+      1100
+     ]
+    },
+    {
+     "w": 75,
+     "frame": [
+      420,
+      1300,
+      1050
+     ]
+    },
+    {
+     "w": 79,
+     "frame": [
+      600,
+      1400,
+      1450
+     ]
+    },
+    {
+     "w": 84,
+     "frame": [
+      560,
+      1450,
+      1350
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 70,
+     "who": "you",
+     "pose": "cheer",
+     "expr": "happy",
+     "y": 1600,
+     "dur": 0.3
+    },
+    {
+     "w": 72,
+     "who": "you",
+     "y": 1740,
+     "dur": 0.25
+    },
+    {
+     "w": 75,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "sad"
+    },
+    {
+     "w": 79,
+     "who": "you",
+     "pose": "arms_crossed",
+     "expr": "deadpan"
+    },
+    {
+     "w": 83,
+     "who": "bus",
+     "x": 880,
+     "dur": 0.9
+    }
+   ]
+  },
+  {
+   "id": "angry",
+   "start_word": 87,
+   "set": "kitchen",
+   "mood": "night",
+   "bloom": 0.7,
+   "cast": [
+    {
+     "id": "wifi",
+     "type": "wifi",
+     "x": 820,
+     "y": 700,
+     "scale": 0.6,
+     "z": 1.0
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1720,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "neutral",
+     "hair": "messy_black",
+     "beard": "#8a5a3a",
+     "torso": "#4a4e62",
+     "scarf": "#3a6ad8"
+    },
+    {
+     "id": "phone",
+     "type": "phone",
+     "x": 200,
+     "y": 1780,
+     "scale": 0.17,
+     "z": 0.97,
+     "shadow": false
+    },
+    {
+     "id": "lap",
+     "type": "laptop",
+     "x": 880,
+     "y": 1790,
+     "scale": 0.9,
+     "z": 0.97
+    },
+    {
+     "id": "b1",
+     "type": "bolt",
+     "x": 470,
+     "y": 1330,
+     "scale": 0.6,
+     "z": 0.98,
+     "dx": -250,
+     "dy": 330,
+     "expr": "off",
+     "rate": 8
+    },
+    {
+     "id": "b2",
+     "type": "bolt",
+     "x": 610,
+     "y": 1330,
+     "scale": 0.6,
+     "z": 0.98,
+     "dx": 260,
+     "dy": 330,
+     "expr": "off",
+     "rate": 8
+    },
+    {
+     "id": "s1",
+     "type": "smoke",
+     "x": -3000,
+     "y": 1720,
+     "scale": 0.8,
+     "z": 0.97
+    },
+    {
+     "id": "s2",
+     "type": "smoke",
+     "x": -3000,
+     "y": 1720,
+     "scale": 0.8,
+     "z": 0.97
+    },
+    {
+     "id": "flash",
+     "type": "blackout",
+     "x": 540,
+     "y": 960,
+     "scale": 1,
+     "z": 0.9,
+     "expr": "off",
+     "torso": "#ffffff",
+     "alpha": 0.3
+    }
+   ],
+   "keys": [
+    {
+     "w": 87,
+     "frame": [
+      540,
+      1300,
+      1350
+     ]
+    },
+    {
+     "w": 91,
+     "frame": "you:face"
+    },
+    {
+     "w": 96,
+     "frame": [
+      540,
+      1450,
+      1300
+     ]
+    },
+    {
+     "w": 99,
+     "frame": [
+      260,
+      1550,
+      820
+     ]
+    },
+    {
+     "w": 102,
+     "frame": [
+      820,
+      1560,
+      820
+     ]
+    },
+    {
+     "w": 105,
+     "frame": [
+      800,
+      650,
+      900
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 95,
+     "who": "you",
+     "expr": "angry",
+     "pose": "cheer"
+    },
+    {
+     "w": 96,
+     "who": "b1",
+     "expr": "on"
+    },
+    {
+     "w": 96,
+     "who": "b2",
+     "expr": "on"
+    },
+    {
+     "w": 96,
+     "who": "flash",
+     "expr": "on"
+    },
+    {
+     "w": 97,
+     "who": "flash",
+     "expr": "off"
+    },
+    {
+     "w": 100,
+     "who": "s1",
+     "x": 200,
+     "dur": 0.05
+    },
+    {
+     "w": 103,
+     "who": "lap",
+     "expr": "fried"
+    },
+    {
+     "w": 103,
+     "who": "s2",
+     "x": 880,
+     "dur": 0.05
+    },
+    {
+     "w": 107,
+     "who": "wifi",
+     "expr": "gone"
+    },
+    {
+     "w": 107,
+     "who": "b1",
+     "expr": "off"
+    },
+    {
+     "w": 107,
+     "who": "b2",
+     "expr": "off"
+    },
+    {
+     "w": 108,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "deadpan"
+    }
+   ]
+  },
+  {
+   "id": "friend",
+   "start_word": 109,
+   "set": "street",
+   "mood": "dawn",
+   "cast": [
+    {
+     "id": "pal",
+     "type": "kid",
+     "x": 380,
+     "y": 1730,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "hold",
+     "expr": "laughing",
+     "hold": "sign:THUNDER POWERS!"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 780,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "arms_crossed",
+     "expr": "sly",
+     "hair": "messy_black",
+     "beard": "#8a5a3a",
+     "torso": "#4a4e62",
+     "scarf": "#3a6ad8"
+    }
+   ],
+   "keys": [
+    {
+     "w": 109,
+     "frame": [
+      560,
+      1300,
+      1450
+     ]
+    },
+    {
+     "w": 113,
+     "frame": [
+      400,
+      1300,
+      1050
+     ]
+    },
+    {
+     "w": 118,
+     "frame": [
+      740,
+      1250,
+      950
+     ]
+    },
+    {
+     "w": 121,
+     "frame": [
+      420,
+      1300,
+      1000
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 118,
+     "who": "you",
+     "pose": "point",
+     "talk": true
+    },
+    {
+     "w": 121,
+     "who": "you",
+     "talk": false
+    },
+    {
+     "w": 121,
+     "who": "pal",
+     "hold": "tag:0% BATTERY",
+     "expr": "sad"
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "start_word": 125,
+   "set": "field",
+   "mood": "sunset",
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1960,
+     "scale": 1.25,
+     "z": 0.9,
+     "face": 0.2,
+     "pose": "hold",
+     "expr": "happy",
+     "hold": "sign:SUBSCRIBE",
+     "hair": "messy_black",
+     "beard": "#8a5a3a",
+     "torso": "#4a4e62",
+     "scarf": "#3a6ad8"
+    },
+    {
+     "id": "bolt",
+     "type": "bolt",
+     "x": 900,
+     "y": 300,
+     "scale": 0.9,
+     "z": 0.89,
+     "dx": -100,
+     "dy": 1500,
+     "expr": "off"
+    },
+    {
+     "id": "flash",
+     "type": "blackout",
+     "x": 540,
+     "y": 960,
+     "scale": 1,
+     "z": 0.85,
+     "expr": "off",
+     "torso": "#ffffff",
+     "alpha": 0.4
+    }
+   ],
+   "keys": [
+    {
+     "w": 125,
+     "frame": [
+      560,
+      1500,
+      1300
+     ]
+    },
+    {
+     "w": 129,
+     "frame": [
+      600,
+      1450,
+      1050
+     ]
+    },
+    {
+     "w": 133,
+     "frame": [
+      540,
+      1300,
+      900
+     ]
+    },
+    {
+     "w": 135,
+     "frame": [
+      600,
+      1350,
+      1450
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 131,
+     "who": "you",
+     "expr": "scared"
+    },
+    {
+     "w": 133,
+     "who": "you",
+     "expr": "shocked",
+     "hold": null,
+     "pose": "stand"
+    },
+    {
+     "w": 135,
+     "who": "bolt",
+     "expr": "on"
+    },
+    {
+     "w": 135,
+     "who": "flash",
+     "expr": "on"
+    },
+    {
+     "w": 135,
+     "who": "you",
+     "expr": "laughing",
+     "pose": "cheer"
+    },
+    {
+     "w": 136,
+     "who": "flash",
+     "expr": "off"
+    }
+   ]
+  }
+ ]
+}

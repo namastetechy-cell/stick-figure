@@ -111,7 +111,7 @@ class Runtime:
                 spec['hold_fn'] = hf
                 if spec['pose'] == 'stand':
                     spec['pose'] = 'hold'
-            for k in ('skin', 'torso', 'accent', 'hat', 'hair', 'arms', 'arm_mode', 'beard', 'moustache'):
+            for k in ('skin', 'torso', 'accent', 'hat', 'hair', 'arms', 'arm_mode', 'beard', 'moustache', 'scarf'):
                 if k in st:
                     spec[k] = st[k]
             s = st.get('scale', 1.0)

@@ -419,7 +419,7 @@ def actor_state(cast_entry, acts, words, t):
         ta = onset(words, a['w']) + a.get('delay', 0.0)
         if t < ta:
             break
-        for k in ('pose', 'expr', 'face', 'dir', 'talk', 'hold', 'look', 'skin', 'torso', 'arms', 'arm_mode', 'hair', 'beard', 'moustache'):
+        for k in ('pose', 'expr', 'face', 'dir', 'talk', 'hold', 'look', 'skin', 'torso', 'arms', 'arm_mode', 'hair', 'beard', 'moustache', 'scarf'):
             if k in a:
                 st[k] = a[k]
         if 'scale' in a:                                    # grow / shrink over 'sdur' (default dur)
