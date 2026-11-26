@@ -49,6 +49,8 @@ ARCHETYPES = {
                       parts=['fur_tunic'], prop='club', hair='messy_black', width=1.1),
     'everyman':  dict(torso='#2f9a8a', accent='#f2c640', pants='#3a4a7a', shoes='#2a2230', hat=None,
                       parts=['polo_collar', 'center_buttons', 'pocket_l'], prop=None, hair='cowlick', width=1.0),
+    'hero':      dict(torso='#2f5ad8', accent='#f2c640', pants='#2a3a8a', shoes='#d8343c', hat=None,
+                      parts=['tee_star', 'belt'], prop=None, hair='messy_black', width=1.08, scarf='#d8343c'),
     'mom':       dict(torso='#d8607a', accent='#f4efe6', pants='#4a3a5a', shoes='#5a2a3a', hat=None,
                       parts=['collar', 'apron'], prop=None, hair='bob_brown', width=1.02),
     'kid':       dict(torso='#f2b632', accent='#d84a6a', pants='#3f78c8', shoes='#e84a4a', hat='propeller',

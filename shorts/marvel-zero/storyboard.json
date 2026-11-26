@@ -1,0 +1,1142 @@
+{
+ "title": "What if you entered a superhero universe with zero powers",
+ "fps": 30,
+ "end_pad": 0.8,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "hook",
+   "start_word": 0,
+   "set": "street",
+   "mood": "day",
+   "cast": [
+    {
+     "id": "h1",
+     "type": "hero",
+     "x": 300,
+     "y": 900,
+     "scale": 0.7,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "cheer",
+     "expr": "smug",
+     "shadow": false
+    },
+    {
+     "id": "h2",
+     "type": "hero",
+     "x": 800,
+     "y": 820,
+     "scale": 0.6,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "point",
+     "expr": "laughing",
+     "torso": "#2a9a5a",
+     "scarf": "#f2c640",
+     "shadow": false
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1740,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "neutral"
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": "you:face"
+    },
+    {
+     "w": 4,
+     "frame": [
+      540,
+      1050,
+      1700
+     ]
+    },
+    {
+     "w": 7,
+     "frame": [
+      540,
+      1300,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 4,
+     "who": "you",
+     "expr": "shocked",
+     "look": [
+      0,
+      -1
+     ]
+    },
+    {
+     "w": 8,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "deadpan",
+     "look": [
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "smash",
+   "start_word": 10,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "hole",
+     "type": "hole",
+     "x": -3000,
+     "y": 90,
+     "scale": 1.3,
+     "z": 1.0
+    },
+    {
+     "id": "deb",
+     "type": "debris",
+     "x": -3000,
+     "y": 100,
+     "scale": 1.2,
+     "z": 0.99
+    },
+    {
+     "id": "h1",
+     "type": "hero",
+     "x": 300,
+     "y": 1720,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "point",
+     "expr": "angry"
+    },
+    {
+     "id": "h2",
+     "type": "hero",
+     "x": 800,
+     "y": 1720,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "point",
+     "expr": "angry",
+     "torso": "#2a9a5a",
+     "scarf": "#f2c640"
+    },
+    {
+     "id": "bang",
+     "type": "burst",
+     "x": -3000,
+     "y": 1350,
+     "scale": 1.3,
+     "z": 0.98,
+     "rate": 2.2
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 560,
+     "y": 1800,
+     "scale": 0.9,
+     "z": 0.96,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "scared"
+    }
+   ],
+   "keys": [
+    {
+     "w": 10,
+     "frame": [
+      540,
+      1300,
+      1500
+     ]
+    },
+    {
+     "w": 15,
+     "frame": [
+      540,
+      700,
+      1700
+     ]
+    },
+    {
+     "w": 20,
+     "frame": [
+      560,
+      1420,
+      1000
+     ]
+    },
+    {
+     "w": 24,
+     "frame": [
+      540,
+      1100,
+      1700
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 14,
+     "who": "bang",
+     "x": 550,
+     "dur": 0.05
+    },
+    {
+     "w": 15,
+     "who": "hole",
+     "x": 540,
+     "dur": 0.05
+    },
+    {
+     "w": 15,
+     "who": "deb",
+     "x": 540,
+     "dur": 0.05
+    },
+    {
+     "w": 15,
+     "who": "you",
+     "expr": "shocked"
+    },
+    {
+     "w": 20,
+     "who": "bang",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 20,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "angry"
+    },
+    {
+     "w": 24,
+     "who": "h1",
+     "x": 500,
+     "y": -400,
+     "dur": 0.6,
+     "pose": "cheer"
+    },
+    {
+     "w": 24,
+     "who": "h2",
+     "x": 600,
+     "y": -400,
+     "dur": 0.6,
+     "pose": "cheer"
+    },
+    {
+     "w": 25,
+     "who": "you",
+     "expr": "sad"
+    }
+   ]
+  },
+  {
+   "id": "cleanup",
+   "start_word": 27,
+   "set": "street",
+   "mood": "day",
+   "cast": [
+    {
+     "id": "deb",
+     "type": "debris",
+     "x": 540,
+     "y": 300,
+     "scale": 1.2,
+     "z": 1.0
+    },
+    {
+     "id": "w1",
+     "type": "worker",
+     "x": 280,
+     "y": 1730,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "hold",
+     "expr": "happy",
+     "hold": "sign:CLEANUP CO."
+    },
+    {
+     "id": "w2",
+     "type": "worker",
+     "x": 800,
+     "y": 1730,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "hips",
+     "expr": "deadpan",
+     "torso": "#e8a33a"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1760,
+     "scale": 1.0,
+     "z": 0.99,
+     "face": 0.0,
+     "pose": "stand",
+     "expr": "shocked"
+    }
+   ],
+   "keys": [
+    {
+     "w": 27,
+     "frame": [
+      540,
+      1200,
+      1700
+     ]
+    },
+    {
+     "w": 33,
+     "frame": [
+      540,
+      1350,
+      1300
+     ]
+    },
+    {
+     "w": 37,
+     "frame": [
+      300,
+      1350,
+      950
+     ]
+    },
+    {
+     "w": 40,
+     "frame": [
+      520,
+      1350,
+      1250
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 37,
+     "who": "w1",
+     "talk": true
+    },
+    {
+     "w": 40,
+     "who": "w1",
+     "talk": false,
+     "expr": "laughing"
+    },
+    {
+     "w": 40,
+     "who": "you",
+     "expr": "deadpan"
+    }
+   ]
+  },
+  {
+   "id": "aliens",
+   "start_word": 42,
+   "set": "street",
+   "mood": "night",
+   "bloom": 0.6,
+   "cast": [
+    {
+     "id": "ufo1",
+     "type": "ufo",
+     "x": 330,
+     "y": 520,
+     "scale": 0.6,
+     "z": 1.0,
+     "expr": "beam"
+    },
+    {
+     "id": "ufo2",
+     "type": "ufo",
+     "x": 820,
+     "y": 330,
+     "scale": 0.4,
+     "z": 1.0
+    },
+    {
+     "id": "a1",
+     "type": "alien",
+     "x": 1300,
+     "y": 1600,
+     "scale": 0.6,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "walk",
+     "expr": "angry"
+    },
+    {
+     "id": "a2",
+     "type": "alien",
+     "x": 1450,
+     "y": 1640,
+     "scale": 0.65,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "walk",
+     "expr": "sly"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": -150,
+     "y": 1640,
+     "scale": 0.62,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "run",
+     "expr": "scared"
+    },
+    {
+     "id": "hero",
+     "type": "hero",
+     "x": 360,
+     "y": 1840,
+     "scale": 1.2,
+     "z": 0.96,
+     "face": 0.3,
+     "pose": "hips",
+     "expr": "smug"
+    }
+   ],
+   "keys": [
+    {
+     "w": 42,
+     "frame": [
+      560,
+      800,
+      1500
+     ]
+    },
+    {
+     "w": 45,
+     "frame": [
+      600,
+      1250,
+      1500
+     ]
+    },
+    {
+     "w": 48,
+     "frame": [
+      380,
+      1450,
+      1050
+     ]
+    },
+    {
+     "w": 52,
+     "frame": [
+      560,
+      1400,
+      1550
+     ]
+    },
+    {
+     "w": 58,
+     "frame": [
+      600,
+      1450,
+      1150
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 43,
+     "who": "a1",
+     "x": 800,
+     "dur": 2.0
+    },
+    {
+     "w": 43,
+     "who": "a2",
+     "x": 960,
+     "dur": 2.0
+    },
+    {
+     "w": 50,
+     "who": "hero",
+     "pose": "point",
+     "expr": "angry"
+    },
+    {
+     "w": 53,
+     "who": "you",
+     "x": 1250,
+     "dur": 2.4,
+     "pose": "run",
+     "talk": true
+    }
+   ]
+  },
+  {
+   "id": "snap",
+   "start_word": 60,
+   "set": "castle_hall",
+   "mood": "night",
+   "bloom": 0.6,
+   "cast": [
+    {
+     "id": "giant",
+     "type": "boss",
+     "x": 540,
+     "y": 1560,
+     "scale": 1.45,
+     "z": 1.0,
+     "face": 0.0,
+     "pose": "stand",
+     "expr": "smug",
+     "skin": "#a77ad8",
+     "torso": "#4a3a6a",
+     "hair": null,
+     "moustache": false
+    },
+    {
+     "id": "snapfx",
+     "type": "burst",
+     "x": -3000,
+     "y": 1000,
+     "scale": 0.7,
+     "z": 0.99,
+     "rate": 1.6
+    },
+    {
+     "id": "p1",
+     "type": "kid",
+     "x": 200,
+     "y": 1800,
+     "scale": 0.85,
+     "z": 0.95,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "id": "p2",
+     "type": "cashier",
+     "x": 420,
+     "y": 1820,
+     "scale": 0.85,
+     "z": 0.95,
+     "face": 0.3,
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "id": "p3",
+     "type": "cop",
+     "x": 660,
+     "y": 1820,
+     "scale": 0.85,
+     "z": 0.95,
+     "face": -0.3,
+     "dir": -1,
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "id": "p4",
+     "type": "worker",
+     "x": 880,
+     "y": 1800,
+     "scale": 0.85,
+     "z": 0.95,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "stand",
+     "expr": "neutral"
+    },
+    {
+     "id": "d1",
+     "type": "dust",
+     "x": 200,
+     "y": 1800,
+     "scale": 0.85,
+     "z": 0.94,
+     "t0": 23.3
+    },
+    {
+     "id": "d3",
+     "type": "dust",
+     "x": 660,
+     "y": 1820,
+     "scale": 0.85,
+     "z": 0.94,
+     "t0": 23.3
+    }
+   ],
+   "keys": [
+    {
+     "w": 60,
+     "frame": [
+      540,
+      1150,
+      1700
+     ]
+    },
+    {
+     "w": 63,
+     "frame": [
+      540,
+      1000,
+      1150
+     ]
+    },
+    {
+     "w": 65,
+     "frame": [
+      680,
+      1000,
+      1000
+     ]
+    },
+    {
+     "w": 68,
+     "frame": [
+      540,
+      1400,
+      1300
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 65,
+     "who": "giant",
+     "pose": "wave",
+     "expr": "sly"
+    },
+    {
+     "w": 66,
+     "who": "snapfx",
+     "x": 730,
+     "dur": 0.05
+    },
+    {
+     "w": 68,
+     "who": "snapfx",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 68,
+     "who": "p2",
+     "expr": "scared"
+    },
+    {
+     "w": 68,
+     "who": "p4",
+     "expr": "scared"
+    },
+    {
+     "w": 71,
+     "who": "p1",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 71,
+     "who": "p3",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 71,
+     "who": "p2",
+     "expr": "shocked"
+    },
+    {
+     "w": 71,
+     "who": "p4",
+     "expr": "shocked"
+    }
+   ]
+  },
+  {
+   "id": "coin",
+   "start_word": 73,
+   "set": "castle_hall",
+   "mood": "night",
+   "bloom": 0.6,
+   "cast": [
+    {
+     "id": "coin",
+     "type": "coin",
+     "x": 540,
+     "y": 900,
+     "scale": 0.9,
+     "z": 0.98,
+     "expr": "flip"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1880,
+     "scale": 1.1,
+     "z": 0.97,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "scared",
+     "look": [
+      0,
+      -1
+     ]
+    },
+    {
+     "id": "ydust",
+     "type": "dust",
+     "x": 540,
+     "y": 1780,
+     "scale": 1.1,
+     "z": 0.96,
+     "t0": 26.6
+    }
+   ],
+   "keys": [
+    {
+     "w": 73,
+     "frame": [
+      540,
+      860,
+      820
+     ]
+    },
+    {
+     "w": 75,
+     "frame": [
+      540,
+      1200,
+      1500
+     ]
+    },
+    {
+     "w": 78,
+     "frame": [
+      540,
+      860,
+      820
+     ]
+    },
+    {
+     "w": 79,
+     "frame": [
+      540,
+      1350,
+      1400
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 75,
+     "who": "coin",
+     "expr": "heads"
+    },
+    {
+     "w": 75,
+     "who": "you",
+     "expr": "happy",
+     "pose": "cheer"
+    },
+    {
+     "w": 77,
+     "who": "coin",
+     "expr": "flip"
+    },
+    {
+     "w": 78,
+     "who": "coin",
+     "expr": "tails"
+    },
+    {
+     "w": 78,
+     "who": "you",
+     "expr": "shocked",
+     "pose": "stand"
+    },
+    {
+     "w": 79,
+     "who": "you",
+     "x": -3000,
+     "dur": 0.05
+    }
+   ]
+  },
+  {
+   "id": "rent",
+   "start_word": 81,
+   "set": "street",
+   "mood": "dawn",
+   "cast": [
+    {
+     "id": "cal",
+     "type": "calendar",
+     "x": 820,
+     "y": 1150,
+     "scale": 0.7,
+     "z": 1.0,
+     "label": "YEARS",
+     "d0": 0,
+     "d1": 5,
+     "t0": 28.6,
+     "t1": 29.5,
+     "shadow": false
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 260,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "cheer",
+     "expr": "laughing"
+    },
+    {
+     "id": "kid",
+     "type": "kid",
+     "x": -300,
+     "y": 1760,
+     "scale": 0.9,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "wave",
+     "expr": "happy"
+    },
+    {
+     "id": "cop",
+     "type": "cop",
+     "x": 1350,
+     "y": 1740,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "wave",
+     "expr": "happy"
+    },
+    {
+     "id": "lord",
+     "type": "boss",
+     "x": 1450,
+     "y": 1760,
+     "scale": 1.1,
+     "z": 0.98,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "hold",
+     "expr": "smug",
+     "hold": "sign:RENT DUE: 5 YRS"
+    }
+   ],
+   "keys": [
+    {
+     "w": 81,
+     "frame": [
+      400,
+      1300,
+      1150
+     ]
+    },
+    {
+     "w": 84,
+     "frame": [
+      760,
+      1050,
+      900
+     ]
+    },
+    {
+     "w": 87,
+     "frame": [
+      540,
+      1300,
+      1550
+     ]
+    },
+    {
+     "w": 91,
+     "frame": [
+      740,
+      1300,
+      1150
+     ]
+    },
+    {
+     "w": 94,
+     "frame": [
+      560,
+      1300,
+      1400
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 87,
+     "who": "kid",
+     "x": 150,
+     "dur": 0.8
+    },
+    {
+     "w": 87,
+     "who": "cop",
+     "x": 1000,
+     "dur": 0.8
+    },
+    {
+     "w": 88,
+     "who": "cop",
+     "x": 1350,
+     "dur": 0.4
+    },
+    {
+     "w": 90,
+     "who": "lord",
+     "x": 760,
+     "dur": 0.8
+    },
+    {
+     "w": 93,
+     "who": "you",
+     "pose": "stand",
+     "expr": "shocked"
+    },
+    {
+     "w": 95,
+     "who": "lord",
+     "talk": true
+    }
+   ]
+  },
+  {
+   "id": "friend",
+   "start_word": 98,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "pal",
+     "type": "kid",
+     "x": 360,
+     "y": 1730,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "cheer",
+     "expr": "laughing",
+     "scarf": "#d8343c"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 760,
+     "y": 1730,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "hold",
+     "expr": "smug",
+     "hold": "sign:SENT!"
+    },
+    {
+     "id": "deb",
+     "type": "debris",
+     "x": -3000,
+     "y": 80,
+     "scale": 1.0,
+     "z": 0.99
+    }
+   ],
+   "keys": [
+    {
+     "w": 98,
+     "frame": [
+      560,
+      1300,
+      1450
+     ]
+    },
+    {
+     "w": 102,
+     "frame": [
+      380,
+      1300,
+      1000
+     ]
+    },
+    {
+     "w": 110,
+     "frame": [
+      540,
+      1250,
+      1350
+     ]
+    },
+    {
+     "w": 112,
+     "frame": [
+      380,
+      1300,
+      950
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 104,
+     "who": "pal",
+     "talk": true
+    },
+    {
+     "w": 110,
+     "who": "pal",
+     "talk": false
+    },
+    {
+     "w": 110,
+     "who": "deb",
+     "x": 380,
+     "dur": 0.05
+    },
+    {
+     "w": 111,
+     "who": "pal",
+     "pose": "shrug",
+     "expr": "scared"
+    },
+    {
+     "w": 112,
+     "who": "you",
+     "expr": "deadpan",
+     "hold": null,
+     "pose": "arms_crossed"
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "start_word": 115,
+   "set": "field",
+   "mood": "sunset",
+   "cast": [
+    {
+     "id": "btn",
+     "type": "subbutton",
+     "x": 640,
+     "y": 1960,
+     "scale": 0.85,
+     "z": 0.9
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 280,
+     "y": 1960,
+     "scale": 1.15,
+     "z": 0.9,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "happy"
+    },
+    {
+     "id": "snapfx",
+     "type": "burst",
+     "x": -3000,
+     "y": 1600,
+     "scale": 0.6,
+     "z": 0.89,
+     "rate": 1.6
+    }
+   ],
+   "keys": [
+    {
+     "w": 115,
+     "frame": [
+      470,
+      1550,
+      1450
+     ]
+    },
+    {
+     "w": 119,
+     "frame": [
+      460,
+      1620,
+      1250
+     ]
+    },
+    {
+     "w": 123,
+     "frame": [
+      470,
+      1560,
+      1350
+     ]
+    },
+    {
+     "w": 126,
+     "frame": [
+      470,
+      1600,
+      1250
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 119,
+     "who": "you",
+     "pose": "point",
+     "expr": "laughing"
+    },
+    {
+     "w": 127,
+     "who": "snapfx",
+     "x": 640,
+     "dur": 0.05
+    },
+    {
+     "w": 127,
+     "who": "you",
+     "pose": "cheer",
+     "expr": "laughing"
+    }
+   ]
+  }
+ ]
+}

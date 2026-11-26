@@ -968,3 +968,77 @@ def draw_breath(cv, x, y, s, t, mood, st):
 
 DRAW.update({'pausebtn': draw_pausebtn, 'blackout': draw_blackout, 'soundwave': draw_soundwave, 'breath': draw_breath})
 SHADOW.update({'pausebtn': 0, 'blackout': 0, 'soundwave': 0, 'breath': 0})
+
+
+# ----------------------------------------------------------------------------- flying saucer (~700 wide), hovers + beam
+def draw_ufo(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    hov = math.sin(t * 2.2 + (hash(st.get('id', '')) % 7)) * 18
+    cv.save(); cv.translate(x, y + hov); cv.scale(s * st.get('dir', 1), s)
+    if st.get('expr') == 'beam':
+        bm = path_smooth([(-90, -30), (90, -30), (260, 700), (-260, 700)], tension=0.0)
+        p = fill('#ffffff'); p.setShader(lin_grad((0, -30), (0, 700), [C4('#b8ff8a', 0.55), C4('#b8ff8a', 0.0)]))
+        cv.drawPath(bm, p)
+    dome = ellipse(0, -90, 150, 110)
+    cv.drawPath(dome, fill('#bfe8ff', 0.85)); cv.drawPath(dome, ink(W))
+    cv.drawPath(ellipse(-50, -130, 40, 22), fill('#ffffff', 0.6))
+    disc = ellipse(0, -30, 350, 90)
+    cv.drawPath(disc, fill(g('#9aa4b8'))); cv.drawPath(disc, ink(W))
+    cv.drawPath(ellipse(0, -10, 260, 45), fill(g('#6a7488'))); cv.drawPath(ellipse(0, -10, 260, 45), ink(5))
+    for k in range(7):
+        a = k / 7 * 2 * math.pi + t * 2
+        lx, ly = math.cos(a) * 290, -30 + math.sin(a) * 60
+        if math.sin(a) > -0.3:
+            on = (k + int(t * 6)) % 2 == 0
+            cv.drawCircle(lx, ly, 16, fill('#ffe27a' if on else '#f27a5a')); cv.drawCircle(lx, ly, 16, ink(4))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- coin: 'flip' spins, 'heads' / 'tails' land
+def draw_coin(cv, x, y, s, t, mood, st):
+    expr = st.get('expr', 'flip')
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    if expr == 'flip':
+        sx = abs(math.cos(t * 14)) * 0.95 + 0.05
+        cv.translate(0, -60 * abs(math.sin(t * 3)))
+    else:
+        sx = 1.0
+    cv.save(); cv.scale(sx, 1)
+    glow = fill('#ffffff'); glow.setShader(rad_grad((0, 0), 300, [C4('#ffe27a', 0.5), C4('#ffe27a', 0.0)]))
+    cv.drawCircle(0, 0, 300, glow)
+    cv.drawCircle(0, 0, 200, fill('#e8b030')); cv.drawCircle(0, 0, 200, ink(W * 1.2))
+    cv.drawCircle(0, 0, 160, fill('#f6cc4a')); cv.drawCircle(0, 0, 160, ink(4, 0.6))
+    if expr == 'heads':                                            # a smiling round head = you stay
+        cv.drawCircle(0, -10, 80, fill('#f6f1ea')); cv.drawCircle(0, -10, 80, ink(6))
+        for k in (-1, 1):
+            cv.drawCircle(k * 28, -20, 9, fill(INK))
+        m = skia.Path(); m.moveTo(-30, 20); m.quadTo(0, 45, 30, 20); cv.drawPath(m, ink(6))
+    elif expr == 'tails':                                          # a little dust swirl
+        for k in range(14):
+            a = k * 0.9
+            cv.drawCircle(math.cos(a) * (20 + k * 7), math.sin(a) * (20 + k * 7), 12 - k * 0.5, fill('#8a6a4a'))
+    cv.restore()
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- dust: a figure-sized cloud of drifting flakes
+def draw_dust(cv, x, y, s, t, mood, st):
+    t0 = st.get('t0', 0.0)
+    u = max(0.0, t - t0)
+    if u <= 0:
+        return
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    for k in range(60):
+        r = ((k * 73) % 100) / 100.0
+        bx, by = (r - 0.5) * 200, -((k * 37) % 480)
+        dx = u * (90 + 60 * r) + 25 * math.sin(u * 3 + k)
+        dy = -u * (40 + 30 * ((k * 17) % 10) / 10.0)
+        a = max(0.0, 1.0 - u / 2.2)
+        if a <= 0:
+            continue
+        cv.drawCircle(bx + dx, by + dy, 7 + (k % 3) * 3, fill('#7a5a44', a))
+    cv.restore()
+
+
+DRAW.update({'ufo': draw_ufo, 'coin': draw_coin, 'dust': draw_dust})
+SHADOW.update({'ufo': 0, 'coin': 0, 'dust': 0})
