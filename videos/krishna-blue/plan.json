@@ -1,0 +1,20 @@
+{
+  "aspect": "9:16",
+  "target_s": [10, 11.5],
+  "max_hold_s": 2.0,
+  "cuts": [72, 132],
+  "planned": [[70, 74], [130, 134], [156, 196], [226, 300]],
+  "beats": [
+    {"f": 0,   "subject": "golden meadow, Krishna + cows, push-in", "line": "L01"},
+    {"f": 40,  "subject": "closer on Krishna", "line": "L01"},
+    {"f": 72,  "subject": "FLASHBACK: Garga Rishi speaks", "line": "L02"},
+    {"f": 104, "subject": "drift to Yashoda with baby Krishna", "line": "L02"},
+    {"f": 132, "subject": "Krishna medium close-up", "line": "L03"},
+    {"f": 160, "subject": "white glow", "line": "L03"},
+    {"f": 176, "subject": "red glow", "line": "L03"},
+    {"f": 191, "subject": "yellow glow", "line": "L03"},
+    {"f": 214, "subject": "camera pulls back, low angle", "line": "L04"},
+    {"f": 252, "subject": "dark rain clouds roll in, blue glow", "line": "L04"},
+    {"f": 290, "subject": "hold on ghanashyam Krishna under clouds", "line": "L04"}
+  ]
+}
