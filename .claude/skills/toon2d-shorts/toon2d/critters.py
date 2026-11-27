@@ -1164,3 +1164,141 @@ def draw_smoke(cv, x, y, s, t, mood, st):
 
 DRAW.update({'bolt': draw_bolt, 'pedestal': draw_pedestal, 'bus': draw_bus, 'laptop': draw_laptop, 'wifi': draw_wifi, 'smoke': draw_smoke})
 SHADOW.update({'bolt': 0, 'pedestal': 220, 'bus': 560, 'laptop': 170, 'wifi': 0, 'smoke': 0})
+
+
+# ----------------------------------------------------------------------------- phone modes: ring (buzz), dark, slow, spam
+_draw_phone_base = draw_phone
+
+
+def draw_phone_modes(cv, x, y, s, t, mood, st):
+    expr = st.get('expr', 'on')
+    buzz = expr in ('ring', 'spam')
+    cv.save()
+    if buzz:
+        cv.translate(math.sin(t * 2 * math.pi * 11) * 10 * s * 6, 0)
+        cv.rotate(math.sin(t * 2 * math.pi * 9) * 2.5)
+    _draw_phone_base(cv, x, y, s, t, mood, st)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    Wd, Hh = 820, 1560
+    scr = rrect(-Wd / 2 + 34, -Hh + 34, Wd - 68, Hh - 68, 80)
+    if expr == 'dark':
+        cv.drawPath(scr, fill('#0c0a12'))
+        cv.drawPath(ellipse(-200, -1300, 340, 120), fill('#ffffff', 0.06))
+    elif expr == 'slow':
+        cv.save(); cv.clipPath(scr, doAntiAlias=True)
+        cv.drawPath(scr, fill('#20202a', 0.55))
+        for k in range(8):                                         # spinner
+            a = k / 8 * 2 * math.pi + int(t * 4) * 0.25
+            cv.drawCircle(math.cos(a) * 120, -780 + math.sin(a) * 120, 28, fill('#ffffff', 0.25 + 0.75 * k / 8))
+        cw = skia.Path()                                           # cobweb in the top-left corner
+        for r in (120, 220, 320):
+            cw.moveTo(-Wd / 2 + 34, -Hh + 34 + r)
+            cw.quadTo(-Wd / 2 + 34 + r * 0.5, -Hh + 34 + r * 0.5, -Wd / 2 + 34 + r, -Hh + 34)
+        for a in (0.2, 0.7, 1.2):
+            cw.moveTo(-Wd / 2 + 34, -Hh + 34); cw.lineTo(-Wd / 2 + 34 + math.cos(a) * 380, -Hh + 34 + math.sin(a) * 380)
+        cv.drawPath(cw, stroke_c('#ffffff', 5))
+        cv.restore()
+    if buzz:
+        for sx in (-1, 1):                                         # buzz lines
+            for k in range(3):
+                bx = sx * (Wd / 2 + 60 + k * 50)
+                cv.drawLine(bx, -1000 + k * 40, bx, -700 - k * 40, ink(12, 0.8 - k * 0.2))
+    if expr == 'spam':
+        ban = rrect(-330, -1300, 660, 420, 50)
+        cv.drawPath(ban, fill('#ffffff', 0.96)); cv.drawPath(ban, ink(6))
+        cv.drawCircle(-220, -1180, 60, fill('#d8343c')); _txt(cv, '!', -220, -1150, 90, '#ffffff')
+        _txt(cv, 'SPAM CALL', 60, -1150, 78, '#d8343c')
+        _txt(cv, 'Your car’s extended', 0, -1010, 54, '#2a2030')
+        _txt(cv, 'warranty...', 0, -930, 54, '#2a2030')
+    cv.restore()
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- battery icon (~520 wide): level 0-100, label
+def draw_battery(cv, x, y, s, t, mood, st):
+    lv = max(0.0, min(100.0, float(st.get('level', 100))))
+    col = '#5ad05a' if lv > 50 else ('#f2c640' if lv > 15 else '#e8303a')
+    blink = lv <= 5 and (t * 2.5) % 1.0 < 0.35
+    cv.save(); cv.translate(x, y - 180 * s); cv.scale(s, s)
+    body = rrect(-260, -130, 500, 260, 50)
+    cv.drawPath(body, fill('#ffffff', 0.92)); cv.drawPath(body, ink(W * 1.4))
+    cv.drawPath(rrect(240, -55, 50, 110, 16), fill(INK))
+    w = max(18, 456 * lv / 100.0)
+    if not blink:
+        cv.drawPath(rrect(-238, -108, w, 216, 34), fill(col)); cv.drawPath(rrect(-238, -108, w, 216, 34), ink(4))
+    label = st.get('label', '%d%%' % round(lv))
+    _txt(cv, label, -10, 32, 110 if len(label) < 6 else 660 / len(label), '#ffffff' if lv > 40 else '#2a2030')
+    if lv > 90 and st.get('bolt', True):                           # little charge bolt sparkle
+        a = 0.5 + 0.5 * math.sin(t * 4)
+        cv.drawCircle(220, -150, 20, fill('#fff6a0', a))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- wall outlet with two tugged plugs
+def draw_outlet(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    plate = rrect(-110, -170, 220, 340, 30)
+    cv.drawPath(plate, fill(g('#f4f0e8'))); cv.drawPath(plate, ink(W))
+    for oy in (-75, 75):
+        cv.drawPath(rrect(-55, oy - 45, 110, 90, 26), fill(g('#e0dbd0'))); cv.drawPath(rrect(-55, oy - 45, 110, 90, 26), ink(4))
+        for sx in (-1, 1):
+            cv.drawPath(rrect(sx * 22 - 6, oy - 22, 12, 34, 4), fill(INK))
+    tug = math.sin(t * 7) * 30
+    for sx in (-1, 1):                                             # two cables pulled both ways
+        p = skia.Path(); p.moveTo(0, -75); p.cubicTo(sx * 150, -60 + tug * sx, sx * 300, 60, sx * 520, 120 + tug)
+        cv.drawPath(p, ink(16)); cv.drawPath(p, stroke_c('#f4f0e8', 8))
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- nuclear coin battery (~300 wide), glowing
+def draw_nukebatt(cv, x, y, s, t, mood, st):
+    cv.save(); cv.translate(x, y - 160 * s); cv.scale(s, s)
+    gl = fill('#ffffff'); gl.setShader(rad_grad((0, 0), 300, [C4('#b8ff6a', 0.55 + 0.15 * math.sin(t * 3)), C4('#b8ff6a', 0.0)]))
+    cv.drawCircle(0, 0, 300, gl)
+    cv.drawPath(ellipse(0, 40, 160, 50), fill('#8a92a4')); cv.drawPath(ellipse(0, 40, 160, 50), ink(W))
+    cv.drawRect(skia.Rect.MakeLTRB(-160, -20, 160, 40), fill('#a8b0c0'))
+    cv.drawLine(-160, -20, -160, 40, ink(W)); cv.drawLine(160, -20, 160, 40, ink(W))
+    cv.drawPath(ellipse(0, -20, 160, 50), fill('#c8d0dc')); cv.drawPath(ellipse(0, -20, 160, 50), ink(W))
+    cv.save(); cv.translate(0, -20); cv.scale(1, 0.32)                # radiation trefoil, flattened onto the top
+    cv.drawCircle(0, 0, 120, fill('#f2c640'))
+    for k in range(3):
+        a0 = -90 + k * 120 - 30
+        p = skia.Path(); p.moveTo(0, 0); p.arcTo(skia.Rect.MakeLTRB(-105, -105, 105, 105), a0, 60, False); p.close()
+        cv.drawPath(p, fill(INK))
+    cv.drawCircle(0, 0, 26, fill('#f2c640')); cv.drawCircle(0, 0, 16, fill(INK))
+    cv.restore()
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- power comparison bars: tiny vs needed
+def draw_powerbar(cv, x, y, s, t, mood, st):
+    grow = max(0.0, min(1.0, (t - st.get('t0', 0.0)) / 1.2))
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    cv.drawLine(-360, 0, 360, 0, ink(10))
+    tiny = rrect(-260, -16, 160, 16, 4)
+    cv.drawPath(tiny, fill('#b8ff6a')); cv.drawPath(tiny, ink(4))
+    _txt(cv, st.get('l1', 'NUCLEAR'), -180, 80, 50, '#ffffff')
+    h = 1200 * (1 - (1 - grow) ** 3)
+    big = rrect(80, -h, 200, h, 10)
+    cv.drawPath(big, fill('#e8a03a')); cv.drawPath(big, ink(6))
+    _txt(cv, st.get('l2', 'PHONE'), 180, 80, 50, '#ffffff')
+    cv.restore()
+
+
+# ----------------------------------------------------------------------------- tombstone (~560 tall)
+def draw_tomb(cv, x, y, s, t, mood, st):
+    g = _g(mood)
+    cv.save(); cv.translate(x, y); cv.scale(s, s)
+    stone = path_smooth([(-200, 0), (-200, -380), (-150, -520), (0, -560), (150, -520), (200, -380), (200, 0)], tension=0.2)
+    cv.drawPath(stone, fill(g('#9a9cb0'))); cv.drawPath(stone, ink(W))
+    cv.drawPath(path_smooth([(60, -520), (150, -470), (190, -300), (190, -20), (120, -20)], tension=0.2), fill(g('#7a7c92'), 0.6))
+    _txt(cv, 'R.I.P.', 0, -360, 92, '#4a4458')
+    _txt(cv, st.get('label', 'YOU'), 0, -240, 72, '#4a4458')
+    cv.drawPath(ellipse(0, 8, 300, 40), fill(g('#4a7a3a'))); cv.drawPath(ellipse(0, 8, 300, 40), ink(5))
+    cv.restore()
+
+
+DRAW.update({'phone': draw_phone_modes, 'battery': draw_battery, 'outlet': draw_outlet, 'nukebatt': draw_nukebatt,
+             'powerbar': draw_powerbar, 'tomb': draw_tomb})
+SHADOW.update({'battery': 0, 'outlet': 0, 'nukebatt': 0, 'powerbar': 0, 'tomb': 240})

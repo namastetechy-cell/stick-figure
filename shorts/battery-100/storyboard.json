@@ -1,0 +1,786 @@
+{
+ "title": "What if your phone battery lasted 100 years",
+ "fps": 30,
+ "end_pad": 0.8,
+ "lowercase": true,
+ "scenes": [
+  {
+   "id": "hook",
+   "start_word": 0,
+   "set": "kitchen",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "bat",
+     "type": "battery",
+     "x": 760,
+     "y": 1150,
+     "scale": 0.75,
+     "z": 1.0,
+     "level": 100,
+     "label": "100 YRS"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 380,
+     "y": 1720,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "stand",
+     "expr": "shocked",
+     "look": [
+      0.6,
+      -0.5
+     ]
+    }
+   ],
+   "keys": [
+    {
+     "w": 0,
+     "frame": [
+      760,
+      1010,
+      820
+     ]
+    },
+    {
+     "w": 4,
+     "frame": [
+      560,
+      1250,
+      1450
+     ]
+    },
+    {
+     "w": 8,
+     "frame": "you"
+    },
+    {
+     "w": 13,
+     "frame": [
+      540,
+      1250,
+      1300
+     ]
+    },
+    {
+     "w": 24,
+     "frame": "you:face"
+    }
+   ],
+   "acts": [
+    {
+     "w": 8,
+     "who": "you",
+     "pose": "cheer",
+     "expr": "laughing",
+     "look": [
+      0,
+      0
+     ]
+    },
+    {
+     "w": 13,
+     "who": "you",
+     "pose": "shrug",
+     "expr": "deadpan"
+    },
+    {
+     "w": 24,
+     "who": "you",
+     "pose": "think",
+     "expr": "sly"
+    }
+   ]
+  },
+  {
+   "id": "dream",
+   "start_word": 25,
+   "set": "street",
+   "mood": "dream",
+   "bloom": 0.7,
+   "cast": [
+    {
+     "id": "bat",
+     "type": "battery",
+     "x": -3000,
+     "y": 1050,
+     "scale": 0.65,
+     "z": 1.0,
+     "level": 1,
+     "label": "1%"
+    },
+    {
+     "id": "outlet",
+     "type": "outlet",
+     "x": -3000,
+     "y": 1450,
+     "scale": 0.8,
+     "z": 0.99
+    },
+    {
+     "id": "p1",
+     "type": "cashier",
+     "x": -300,
+     "y": 1740,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "point",
+     "expr": "angry"
+    },
+    {
+     "id": "p2",
+     "type": "cop",
+     "x": 1400,
+     "y": 1740,
+     "scale": 1.0,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "point",
+     "expr": "angry"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 540,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 0.98,
+     "face": 0.1,
+     "pose": "stand",
+     "expr": "happy"
+    }
+   ],
+   "keys": [
+    {
+     "w": 25,
+     "frame": [
+      540,
+      1250,
+      1650
+     ]
+    },
+    {
+     "w": 28,
+     "frame": "you"
+    },
+    {
+     "w": 30,
+     "frame": [
+      760,
+      950,
+      900
+     ]
+    },
+    {
+     "w": 33,
+     "frame": [
+      540,
+      1350,
+      1550
+     ]
+    },
+    {
+     "w": 38,
+     "frame": [
+      540,
+      1400,
+      1200
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 27,
+     "who": "you",
+     "pose": "cheer",
+     "expr": "laughing"
+    },
+    {
+     "w": 30,
+     "who": "bat",
+     "x": 760,
+     "dur": 0.05
+    },
+    {
+     "w": 30,
+     "who": "you",
+     "pose": "stand",
+     "expr": "scared"
+    },
+    {
+     "w": 33,
+     "who": "bat",
+     "x": -3000,
+     "dur": 0.05
+    },
+    {
+     "w": 33,
+     "who": "you",
+     "x": 1400,
+     "dur": 0.5,
+     "pose": "run"
+    },
+    {
+     "w": 33,
+     "who": "outlet",
+     "x": 540,
+     "dur": 0.05
+    },
+    {
+     "w": 33,
+     "who": "p1",
+     "x": 200,
+     "dur": 0.6
+    },
+    {
+     "w": 33,
+     "who": "p2",
+     "x": 880,
+     "dur": 0.6
+    },
+    {
+     "w": 36,
+     "who": "p1",
+     "talk": true
+    },
+    {
+     "w": 37,
+     "who": "p2",
+     "talk": true
+    }
+   ]
+  },
+  {
+   "id": "catch",
+   "start_word": 42,
+   "set": "office",
+   "mood": "golden",
+   "bloom": 0.6,
+   "cast": [
+    {
+     "id": "doc",
+     "type": "scientist",
+     "x": 300,
+     "y": 1300,
+     "scale": 1.0,
+     "z": 1.2,
+     "face": 0.3,
+     "pose": "stand",
+     "expr": "smug"
+    },
+    {
+     "id": "nuke",
+     "type": "nukebatt",
+     "x": 600,
+     "y": 1240,
+     "scale": 0.7,
+     "z": 1.19
+    },
+    {
+     "id": "cal",
+     "type": "calendar",
+     "x": -3000,
+     "y": 1680,
+     "scale": 0.7,
+     "z": 0.96,
+     "label": "YEARS",
+     "d0": 0,
+     "d1": 50,
+     "t0": 24.6,
+     "t1": 25.2,
+     "shadow": false
+    }
+   ],
+   "keys": [
+    {
+     "w": 42,
+     "frame": [
+      460,
+      1150,
+      1300
+     ]
+    },
+    {
+     "w": 45,
+     "frame": [
+      480,
+      1120,
+      1050
+     ]
+    },
+    {
+     "w": 53,
+     "frame": [
+      450,
+      1130,
+      1150
+     ]
+    },
+    {
+     "w": 59,
+     "frame": [
+      600,
+      1080,
+      820
+     ]
+    },
+    {
+     "w": 65,
+     "frame": [
+      640,
+      1350,
+      1300
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 42,
+     "who": "doc",
+     "pose": "point",
+     "expr": "sly"
+    },
+    {
+     "w": 53,
+     "who": "doc",
+     "pose": "stand",
+     "talk": true
+    },
+    {
+     "w": 59,
+     "who": "doc",
+     "talk": false,
+     "pose": "point",
+     "expr": "happy"
+    },
+    {
+     "w": 65,
+     "who": "cal",
+     "x": 780,
+     "dur": 0.05
+    }
+   ]
+  },
+  {
+   "id": "watts",
+   "start_word": 67,
+   "set": "office",
+   "mood": "night",
+   "cast": [
+    {
+     "id": "bars",
+     "type": "powerbar",
+     "x": 540,
+     "y": 1700,
+     "scale": 0.9,
+     "z": 0.96,
+     "t0": 28.7,
+     "l1": "100 \u00b5W",
+     "l2": "YOUR PHONE"
+    }
+   ],
+   "keys": [
+    {
+     "w": 67,
+     "frame": [
+      540,
+      1300,
+      1550
+     ]
+    },
+    {
+     "w": 70,
+     "frame": [
+      380,
+      1650,
+      820
+     ]
+    },
+    {
+     "w": 73,
+     "frame": [
+      560,
+      1250,
+      1650
+     ]
+    },
+    {
+     "w": 78,
+     "frame": [
+      660,
+      1150,
+      1250
+     ]
+    }
+   ]
+  },
+  {
+   "id": "darkscreen",
+   "start_word": 84,
+   "set": "kitchen",
+   "mood": "night",
+   "cast": [
+    {
+     "id": "phone",
+     "type": "phone",
+     "x": 540,
+     "y": 1950,
+     "scale": 0.95,
+     "z": 1.0,
+     "expr": "dark",
+     "shadow": false
+    },
+    {
+     "id": "nuke",
+     "type": "nukebatt",
+     "x": 860,
+     "y": 1880,
+     "scale": 0.5,
+     "z": 0.97
+    }
+   ],
+   "keys": [
+    {
+     "w": 84,
+     "frame": [
+      540,
+      1150,
+      1550
+     ]
+    },
+    {
+     "w": 87,
+     "frame": [
+      600,
+      1300,
+      1200
+     ]
+    }
+   ]
+  },
+  {
+   "id": "slow",
+   "start_word": 90,
+   "set": "office",
+   "mood": "interior",
+   "cast": [
+    {
+     "id": "phone",
+     "type": "phone",
+     "x": 640,
+     "y": 1950,
+     "scale": 0.8,
+     "z": 0.97,
+     "expr": "on",
+     "shadow": false
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 220,
+     "y": 1760,
+     "scale": 1.05,
+     "z": 0.95,
+     "face": 0.4,
+     "pose": "point",
+     "expr": "neutral"
+    }
+   ],
+   "keys": [
+    {
+     "w": 90,
+     "frame": [
+      500,
+      1300,
+      1600
+     ]
+    },
+    {
+     "w": 95,
+     "frame": [
+      560,
+      1250,
+      1350
+     ]
+    },
+    {
+     "w": 99,
+     "frame": [
+      640,
+      1150,
+      1050
+     ]
+    },
+    {
+     "w": 102,
+     "frame": [
+      420,
+      1300,
+      1200
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 98,
+     "who": "phone",
+     "expr": "slow"
+    },
+    {
+     "w": 99,
+     "who": "you",
+     "expr": "angry",
+     "talk": true
+    },
+    {
+     "w": 103,
+     "who": "you",
+     "talk": false,
+     "expr": "deadpan",
+     "pose": "arms_crossed"
+    }
+   ]
+  },
+  {
+   "id": "grave",
+   "start_word": 107,
+   "set": "field",
+   "mood": "night",
+   "bloom": 0.6,
+   "cast": [
+    {
+     "id": "tomb",
+     "type": "tomb",
+     "x": 520,
+     "y": 1940,
+     "scale": 1.0,
+     "z": 0.9,
+     "label": "YOU"
+    },
+    {
+     "id": "phone",
+     "type": "phone",
+     "x": 800,
+     "y": 1960,
+     "scale": 0.24,
+     "z": 0.89,
+     "expr": "on",
+     "shadow": false
+    },
+    {
+     "id": "ghost",
+     "type": "ghost",
+     "x": -500,
+     "y": 1550,
+     "scale": 0.5,
+     "z": 0.91
+    }
+   ],
+   "keys": [
+    {
+     "w": 107,
+     "frame": [
+      540,
+      1450,
+      1600
+     ]
+    },
+    {
+     "w": 111,
+     "frame": [
+      520,
+      1600,
+      1150
+     ]
+    },
+    {
+     "w": 116,
+     "frame": [
+      600,
+      1600,
+      1300
+     ]
+    },
+    {
+     "w": 121,
+     "frame": [
+      780,
+      1720,
+      820
+     ]
+    },
+    {
+     "w": 124,
+     "frame": [
+      800,
+      1700,
+      700
+     ]
+    },
+    {
+     "w": 128,
+     "frame": [
+      560,
+      1550,
+      1350
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 116,
+     "who": "ghost",
+     "x": 300,
+     "dur": 1.2
+    },
+    {
+     "w": 121,
+     "who": "phone",
+     "expr": "ring"
+    },
+    {
+     "w": 124,
+     "who": "phone",
+     "expr": "spam"
+    }
+   ]
+  },
+  {
+   "id": "friend",
+   "start_word": 130,
+   "set": "street",
+   "mood": "dawn",
+   "cast": [
+    {
+     "id": "bat",
+     "type": "battery",
+     "x": 380,
+     "y": 1100,
+     "scale": 0.5,
+     "z": 1.0,
+     "level": 2,
+     "label": "2%"
+    },
+    {
+     "id": "pal",
+     "type": "kid",
+     "x": 380,
+     "y": 1730,
+     "scale": 1.1,
+     "z": 1.0,
+     "face": 0.4,
+     "pose": "shrug",
+     "expr": "scared"
+    },
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 780,
+     "y": 1740,
+     "scale": 1.05,
+     "z": 1.0,
+     "face": -0.4,
+     "dir": -1,
+     "pose": "hold",
+     "expr": "smug",
+     "hold": "sign:SENT!"
+    }
+   ],
+   "keys": [
+    {
+     "w": 130,
+     "frame": [
+      560,
+      1300,
+      1450
+     ]
+    },
+    {
+     "w": 136,
+     "frame": [
+      380,
+      1150,
+      1050
+     ]
+    },
+    {
+     "w": 139,
+     "frame": [
+      540,
+      1300,
+      1350
+     ]
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "start_word": 141,
+   "set": "field",
+   "mood": "sunset",
+   "calm": true,
+   "cast": [
+    {
+     "id": "you",
+     "type": "everyman",
+     "x": 420,
+     "y": 1960,
+     "scale": 1.2,
+     "z": 0.9,
+     "face": 0.3,
+     "pose": "hold",
+     "expr": "happy",
+     "hold": "sign:SUBSCRIBE"
+    },
+    {
+     "id": "bat",
+     "type": "battery",
+     "x": 760,
+     "y": 1380,
+     "scale": 0.5,
+     "z": 0.9,
+     "level": 100,
+     "label": "100 YRS"
+    }
+   ],
+   "keys": [
+    {
+     "w": 141,
+     "frame": [
+      560,
+      1550,
+      1450
+     ]
+    },
+    {
+     "w": 146,
+     "frame": [
+      780,
+      1250,
+      950
+     ]
+    },
+    {
+     "w": 150,
+     "frame": [
+      560,
+      1550,
+      1350
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "w": 149,
+     "who": "you",
+     "expr": "laughing"
+    }
+   ]
+  }
+ ]
+}
