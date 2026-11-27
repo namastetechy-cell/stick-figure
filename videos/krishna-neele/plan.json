@@ -1,0 +1,245 @@
+{
+ "aspect": "9:16",
+ "target_s": [
+  75,
+  77
+ ],
+ "max_hold_s": 2.0,
+ "cuts": [
+  968,
+  1085,
+  1145,
+  1190,
+  1233,
+  1385,
+  1902
+ ],
+ "planned": [
+  [
+   64,
+   76
+  ],
+  [
+   144,
+   156
+  ],
+  [
+   228,
+   240
+  ],
+  [
+   300,
+   312
+  ],
+  [
+   420,
+   432
+  ],
+  [
+   534,
+   546
+  ],
+  [
+   618,
+   630
+  ],
+  [
+   693,
+   705
+  ],
+  [
+   894,
+   906
+  ],
+  [
+   1020,
+   1032
+  ],
+  [
+   1440,
+   1452
+  ],
+  [
+   1530,
+   1542
+  ],
+  [
+   1674,
+   1686
+  ],
+  [
+   1776,
+   1788
+  ],
+  [
+   1854,
+   1866
+  ],
+  [
+   1998,
+   2010
+  ],
+  [
+   2130,
+   2142
+  ],
+  [
+   1230,
+   1449
+  ],
+  [
+   582,
+   630
+  ],
+  [
+   1716,
+   1776
+  ],
+  [
+   2004,
+   2070
+  ]
+ ],
+ "beats": [
+  {
+   "f": 0,
+   "subject": "Krishna meadow"
+  },
+  {
+   "f": 70,
+   "subject": "Putana with baby"
+  },
+  {
+   "f": 150,
+   "subject": "three diyas"
+  },
+  {
+   "f": 198,
+   "subject": "one diya stays bright"
+  },
+  {
+   "f": 234,
+   "subject": "gopis telling tales"
+  },
+  {
+   "f": 306,
+   "subject": "Putana wide"
+  },
+  {
+   "f": 387,
+   "subject": "baby close, purple glow"
+  },
+  {
+   "f": 426,
+   "subject": "Yamuna, Kaliya rises"
+  },
+  {
+   "f": 477,
+   "subject": "Krishna on the hood"
+  },
+  {
+   "f": 540,
+   "subject": "Krishna, blue glow"
+  },
+  {
+   "f": 624,
+   "subject": "brahmana + pothi"
+  },
+  {
+   "f": 699,
+   "subject": "Vishnu Purana in clouds"
+  },
+  {
+   "f": 765,
+   "subject": "Vishnu"
+  },
+  {
+   "f": 852,
+   "subject": "two hairs"
+  },
+  {
+   "f": 900,
+   "subject": "Balarama"
+  },
+  {
+   "f": 975,
+   "subject": "Krishna"
+  },
+  {
+   "f": 1026,
+   "subject": "pothi"
+  },
+  {
+   "f": 1089,
+   "subject": "Garga Rishi"
+  },
+  {
+   "f": 1149,
+   "subject": "Nand + Yashoda"
+  },
+  {
+   "f": 1194,
+   "subject": "Garga speaks"
+  },
+  {
+   "f": 1236,
+   "subject": "baby white/red/yellow"
+  },
+  {
+   "f": 1320,
+   "subject": "baby blue"
+  },
+  {
+   "f": 1389,
+   "subject": "blessing two-shot"
+  },
+  {
+   "f": 1446,
+   "subject": "brahmana Sanskrit"
+  },
+  {
+   "f": 1536,
+   "subject": "Krishna meadow"
+  },
+  {
+   "f": 1602,
+   "subject": "rain clouds"
+  },
+  {
+   "f": 1680,
+   "subject": "dark Krishna"
+  },
+  {
+   "f": 1722,
+   "subject": "brush paints blue"
+  },
+  {
+   "f": 1782,
+   "subject": "Krishna at the sea"
+  },
+  {
+   "f": 1860,
+   "subject": "sky"
+  },
+  {
+   "f": 1914,
+   "subject": "sea"
+  },
+  {
+   "f": 1950,
+   "subject": "endless horizon"
+  },
+  {
+   "f": 2004,
+   "subject": "infinite form"
+  },
+  {
+   "f": 2136,
+   "subject": "outro"
+  },
+  {
+   "f": 2235,
+   "subject": "subscribe"
+  }
+ ]
+}
